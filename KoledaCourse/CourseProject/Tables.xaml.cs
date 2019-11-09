@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Linq.Mapping;
 
 namespace CourseProject
 {
@@ -43,18 +44,8 @@ namespace CourseProject
         private void comboBoxMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string tableName = (sender as ComboBox).SelectedItem as string;
-            if (tableName.Equals("Students"))
-            {
-                this.dataGridMain.ItemsSource = dataClasses.Students;
-            }
-            else if (tableName.Equals("Teachers"))
-            {
-                this.dataGridMain.ItemsSource = dataClasses.Teachers;
-            }
-            else if (tableName.Equals("RegisterBook"))
-            {
-                this.dataGridMain.ItemsSource = dataClasses.RegisterBook;
-            }
+            Type tableType = Type.GetType($"CourseProject.{tableName}");
+            dataGridMain.ItemsSource = dataClasses.GetTable(tableType);
             labelTableName.Content = $"Выбрана таблица \"{tableName}\":";
         }
 

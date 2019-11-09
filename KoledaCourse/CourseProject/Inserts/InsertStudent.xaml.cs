@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CourseProject
+namespace CourseProject.Inserts
 {
     /// <summary>
-    /// Логика взаимодействия для InsertTeacher.xaml
+    /// Логика взаимодействия для InsertStudent.xaml
     /// </summary>
-    public partial class InsertTeacher : Window
+    public partial class InsertStudent : Window
     {
-        public InsertTeacher()
+        public InsertStudent()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace CourseProject
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
             Connector connector = new Connector();
-            connector.InsertIntoTeachers(textBoxSubject.Text, textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+            connector.InsertIntoStudents(this.textBoxGroup.Text, this.textBoxSurame.Text, this.textBoxName.Text, this.textBoxPatronymic.Text);
             MessageBox.Show("Запись успешно добавлена!");
         }
     }

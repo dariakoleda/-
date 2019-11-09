@@ -62,13 +62,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
-    <Compile Include="InsertERBook.xaml.cs">
+    <Compile Include="Inserts\InsertERBook.xaml.cs">
       <DependentUpon>InsertERBook.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InsertStudent.xaml.cs">
+    <Compile Include="Inserts\InsertStudent.xaml.cs">
       <DependentUpon>InsertStudent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InsertTeacher.xaml.cs">
+    <Compile Include="Inserts\InsertTeacher.xaml.cs">
       <DependentUpon>InsertTeacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tables.xaml.cs">
@@ -78,15 +78,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsertERBook.xaml">
+    <Page Include="Inserts\InsertERBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsertStudent.xaml">
+    <Page Include="Inserts\InsertStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsertTeacher.xaml">
+    <Page Include="Inserts\InsertTeacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="CourseProject.InsertTeacher"
+﻿<Window x:Class="CourseProject.Inserts.InsertTeacher"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
         Title="InsertTeacher" Height="350" Width="300"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image x:Name="buttonBack" Source="back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
+        <Image x:Name="buttonBack" Source="/back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
         <Label Content="Предмет: "  HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <TextBox x:Name="textBoxSubject" Margin="30,50,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="10"/>
 

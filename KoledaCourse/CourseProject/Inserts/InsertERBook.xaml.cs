@@ -11,15 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
-namespace CourseProject
+namespace CourseProject.Inserts
 {
     /// <summary>
-    /// Логика взаимодействия для InsertStudent.xaml
+    /// Логика взаимодействия для InsertERBook.xaml
     /// </summary>
-    public partial class InsertStudent : Window
+    public partial class InsertERBook : Window
     {
-        public InsertStudent()
+        public InsertERBook()
         {
             InitializeComponent();
         }
@@ -34,8 +35,22 @@ namespace CourseProject
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
             Connector connector = new Connector();
-            connector.InsertIntoStudents(this.textBoxGroup.Text, this.textBoxSurame.Text, this.textBoxName.Text, this.textBoxPatronymic.Text);
+            connector.InsertIntoERBook
+                (
+                dataPickerMain.SelectedDate,
+                textBoxTopic.Text,
+                textBoxMark.Text,
+                Convert.ToInt32(textBoxIdTeacher.Text),
+                Convert.ToInt32(textBoxIdStudent.Text)
+                );
             MessageBox.Show("Запись успешно добавлена!");
+        }
+
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

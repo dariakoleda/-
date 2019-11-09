@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\andro\Documents\GitHub\CourseProject\CourseProject\CourseProject\obj\Debug\
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\
 CourseProject
 none
 false
 DEBUG;TRACE
-C:\Users\andro\Documents\GitHub\CourseProject\CourseProject\CourseProject\App.xaml
-6-190590477
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\App.xaml
+6-167459000
 
-15320005860
+15-745301027
 141111353196
-DBSettings.xaml;InsertERBook.xaml;InsertStudent.xaml;InsertTeacher.xaml;MainWindow.xaml;Tables.xaml;
+DBSettings.xaml;Inserts\InsertERBook.xaml;Inserts\InsertStudent.xaml;Inserts\InsertTeacher.xaml;MainWindow.xaml;Tables.xaml;
 
-False
+True
 
