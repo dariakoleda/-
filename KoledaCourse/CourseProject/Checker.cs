@@ -11,7 +11,6 @@
             {
                 return false;
             }
-
             input = input.ToLower();
             for (int i = 0; i < input.Length; i++)
             {
@@ -30,7 +29,6 @@
             {
                 return true;
             }
-
             for (int i = 1; i <= 10; i++)
             {
                 if (input == i.ToString())
@@ -38,7 +36,6 @@
                     return true;
                 }
             }
-
             return false;
         }
     }

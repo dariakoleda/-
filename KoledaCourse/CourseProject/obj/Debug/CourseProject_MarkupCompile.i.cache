@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\App.xaml
-6-167459000
+8-961683382
 
-15-745301027
+171116176297
 141111353196
-DBSettings.xaml;Inserts\InsertERBook.xaml;Inserts\InsertStudent.xaml;Inserts\InsertTeacher.xaml;MainWindow.xaml;Tables.xaml;
+DBSettings.xaml;Inserts\InsertGroup.xaml;Inserts\InsertNote.xaml;Inserts\InsertStudent.xaml;Inserts\InsertTeacher.xaml;Inserts\InsertTopic.xaml;MainWindow.xaml;Tables.xaml;
 
 True
 

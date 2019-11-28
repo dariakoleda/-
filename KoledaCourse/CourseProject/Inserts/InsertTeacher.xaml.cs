@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CourseProject.Inserts
 {
@@ -32,10 +23,24 @@ namespace CourseProject.Inserts
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
+        { 
+            try
+            {
+                Connector connector = new Connector();
+                connector.InsertIntoTeachers(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                MessageBox.Show("Запись успешно добавлена!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
+            }
+        }
+
+
+        private void RusValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Connector connector = new Connector();
-            connector.InsertIntoTeachers(textBoxSubject.Text, textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
-            MessageBox.Show("Запись успешно добавлена!");
+            Regex regex = new Regex("[^А-Яа-я]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

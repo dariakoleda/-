@@ -6,11 +6,11 @@ using System.Windows.Input;
 namespace CourseProject.Inserts
 {
     /// <summary>
-    /// Логика взаимодействия для InsertStudent.xaml
+    /// Логика взаимодействия для InsertGroup.xaml
     /// </summary>
-    public partial class InsertStudent : Window
+    public partial class InsertGroup : Window
     {
-        public InsertStudent()
+        public InsertGroup()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace CourseProject.Inserts
             try
             {
                 Connector connector = new Connector();
-                connector.InsertIntoStudents(this.textBoxSurame.Text, this.textBoxName.Text, this.textBoxPatronymic.Text);
+                connector.InsertIntoGroups(textBoxName.Text);
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
@@ -36,11 +36,5 @@ namespace CourseProject.Inserts
             }
         }
 
-
-        private void RusValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^А-Яа-я]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
     }
 }

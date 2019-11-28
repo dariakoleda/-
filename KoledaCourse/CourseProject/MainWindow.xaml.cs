@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using CourseProject.Inserts;
 
 namespace CourseProject
@@ -55,8 +42,22 @@ namespace CourseProject
 
         private void buttonShowInsertERBook_Click(object sender, RoutedEventArgs e)
         {
-            InsertERBook insertERBook = new InsertERBook();
+            InsertNote insertERBook = new InsertNote();
             insertERBook.Show();
+            this.Close();
+        }
+
+        private void buttonShowInsertTopic_Click(object sender, RoutedEventArgs e)
+        {
+            InsertTopic insertTopic = new InsertTopic();
+            insertTopic.Show();
+            this.Close();
+        }
+
+        private void buttonShowInsertGroup_Click(object sender, RoutedEventArgs e)
+        {
+            InsertGroup insertGroup = new InsertGroup();
+            insertGroup.Show();
             this.Close();
         }
     }

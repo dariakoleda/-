@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
 namespace CourseProject.Inserts
 {
     /// <summary>
-    /// Логика взаимодействия для InsertStudent.xaml
+    /// Логика взаимодействия для InsertTopic.xaml
     /// </summary>
-    public partial class InsertStudent : Window
+    public partial class InsertTopic : Window
     {
-        public InsertStudent()
+        public InsertTopic()
         {
             InitializeComponent();
         }
@@ -27,20 +26,13 @@ namespace CourseProject.Inserts
             try
             {
                 Connector connector = new Connector();
-                connector.InsertIntoStudents(this.textBoxSurame.Text, this.textBoxName.Text, this.textBoxPatronymic.Text);
+                connector.InsertIntoTopics(textBoxName.Text);
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
             }
-        }
-
-
-        private void RusValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^А-Яа-я]+");
-            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

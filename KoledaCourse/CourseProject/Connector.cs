@@ -8,7 +8,6 @@ using System.Windows;
 
 namespace CourseProject
 {
-    //Data Source=.\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True
     class Connector
     {
         private string connectionString;
@@ -18,27 +17,13 @@ namespace CourseProject
             this.connectionString = CurrentDB.ConnectionString;
         }
 
-        public async Task<bool> CheckConnectionAsync()
+        public void CheckConnection(string connectionString)
         {
-            bool result = false;
-            await Task.Run(() =>
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
-                {
-                    try
-                    {
-                        sqlConnection.OpenAsync();
-                        sqlConnection.Close();
-                        result = true;
-                    }
-                    catch
-                    {
-                        result = false;
-                    }
-                }
+                sqlConnection.Open();
+                sqlConnection.Close();
             }
-            );
-            return result;
         }
 
         public DataTable GetDataTable(string tN)
@@ -47,23 +32,17 @@ namespace CourseProject
             DataTable datatable = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
             {
-                try
-                {
-                    sqlConnection.Open();
-                    string query = $"SELECT * FROM {tableName}";
-                    SqlCommand command = new SqlCommand(query, sqlConnection);
-                    command.ExecuteNonQuery();
 
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
-                    datatable = new DataTable();
-                    sqlDataAdapter.Fill(datatable);
-                    sqlConnection.Close();
-                    return datatable;
-                }
-                catch
-                {
-                    return datatable;
-                }
+                sqlConnection.Open();
+                string query = $"SELECT * FROM {tableName}";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+                datatable = new DataTable();
+                sqlDataAdapter.Fill(datatable);
+                sqlConnection.Close();
+                return datatable;
             }
         }
 
@@ -71,86 +50,83 @@ namespace CourseProject
         {
             using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
             {
-                try
+                sqlConnection.Open();
+                List<string> tables = new List<string>();
+                DataTable dt = sqlConnection.GetSchema("Tables");
+                foreach (DataRow row in dt.Rows)
                 {
-                    sqlConnection.Open();
-                    List<string> tables = new List<string>();
-                    DataTable dt = sqlConnection.GetSchema("Tables");
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        string tablename = (string)row[2];
-                        tables.Add(tablename);
-                    }
-                    sqlConnection.Close();
-                    return tables;
+                    string tablename = (string)row[2];
+                    tables.Add(tablename);
                 }
-                catch
-                {
-                    return new List<string>();
-                }
+                sqlConnection.Close();
+                return tables;
             }
         }
 
-        public void InsertIntoStudents(string group, string surname, string name, string patronymic)
+        public void InsertIntoStudents( string surname, string name, string patronymic)
         {
             using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
             {
-                try
-                {
-                    sqlConnection.Open();
-                    string query = $"INSERT INTO Students VALUES (N'{group}', N'{surname}', N'{name}', N'{patronymic}')";
-                    SqlCommand command = new SqlCommand(query, sqlConnection);
-                    command.ExecuteNonQuery();
-                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
-                    sqlConnection.Close();
-                }
-                catch
-                {
+                sqlConnection.Open();
+                string query = $"INSERT INTO Students VALUES (N'{surname}', N'{name}', N'{patronymic}', {-1})";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                sqlConnection.Close();
 
-                }
-                
             }
         }
 
-        public void InsertIntoTeachers(string subject, string surname, string name, string patronymic)
+        public void InsertIntoTeachers(string surname, string name, string patronymic)
         {
             using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
             {
-                try
-                {
-                    sqlConnection.Open();
-                    string query = $"INSERT INTO Teachers VALUES (N'{subject}', N'{surname}', N'{name}', N'{patronymic}')";
-                    SqlCommand command = new SqlCommand(query, sqlConnection);
-                    command.ExecuteNonQuery();
-                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
-                    sqlConnection.Close();
-                }
-                catch
-                {
-
-                }
-                
+                sqlConnection.Open();
+                string query = $"INSERT INTO Teachers VALUES (N'{surname}', N'{name}', N'{patronymic}')";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                sqlConnection.Close();
             }
         }
 
-        public void InsertIntoERBook(DateTime? dateTime, string topic, string mark, int id_t, int id_s)
+        public void InsertIntoNotes(int id_t, int id_s, int id_g, int id_topic, DateTime? dateTime, string mark)
         {
             using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
             {
-                try
-                {
-                    sqlConnection.Open();
-                    string query = $"INSERT INTO RegisterBook VALUES ('{dateTime}', N'{topic}', N'{mark}', {id_t}, {id_s})";
-                    SqlCommand command = new SqlCommand(query, sqlConnection);
-                    command.ExecuteNonQuery();
-                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
-                    sqlConnection.Close();
-                }
-                catch
-                {
 
-                }
-                
+                sqlConnection.Open();
+                string query = $"INSERT INTO Notes VALUES ({id_t}, {id_s}, {id_g}, {id_topic}, '{dateTime}', N'{mark}')";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                sqlConnection.Close();
+            }
+        }
+
+        public void InsertIntoGroups(string group)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            {
+                sqlConnection.Open();
+                string query = $"INSERT INTO Groups VALUES (N'{group}')";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                sqlConnection.Close();
+            }
+        }
+
+        public void InsertIntoTopics(string topic)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            {
+                sqlConnection.Open();
+                string query = $"INSERT INTO Topics VALUES (N'{topic}')";
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.ExecuteNonQuery();
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                sqlConnection.Close();
             }
         }
     }

@@ -22,31 +22,29 @@ namespace CourseProject
         public DBSettings()
         {
             InitializeComponent();
+            this.textBoxConnectionString.Text = CurrentDB.ConnectionString;
         }
 
         private void buttonConnect_Click(object sender, RoutedEventArgs e)
         {
-            
-            CurrentDB.ConnectionString = textBoxConnectionString.Text;
             Connector connector = new Connector();
-            var result = Task.Run(connector.CheckConnectionAsync);
-
-            //bool result = connector.CheckConnection();
-            
-            if (result.Result)
+            try
             {
+                connector.CheckConnection(textBoxConnectionString.Text);
+                CurrentDB.ConnectionString = textBoxConnectionString.Text;
+                this.textBoxConnectionString.Text = CurrentDB.ConnectionString;
                 MessageBox.Show("Успешно подключено!");
                 this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                var mbResult = MessageBox.Show("Произошла ошибка при подключении! Продолжить в любом случае?", "Ошибка!", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                var mbResult = MessageBox.Show($"{ex.Message}. Продолжить в любом случае?", "Ошибка!", MessageBoxButton.YesNo, MessageBoxImage.Error);
                 if (mbResult == MessageBoxResult.Yes)
                 {
                     this.Close();
                 }
             }
-            
+
         }
     }
 }
