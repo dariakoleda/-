@@ -22,7 +22,7 @@ namespace CourseProject
         public DBSettings()
         {
             InitializeComponent();
-            this.textBoxConnectionString.Text = CurrentDB.ConnectionString;
+            this.textBoxConnectionString.Text = Connector.ConnectionString;
         }
 
         private void buttonConnect_Click(object sender, RoutedEventArgs e)
@@ -31,8 +31,8 @@ namespace CourseProject
             try
             {
                 connector.CheckConnection(textBoxConnectionString.Text);
-                CurrentDB.ConnectionString = textBoxConnectionString.Text;
-                this.textBoxConnectionString.Text = CurrentDB.ConnectionString;
+                Connector.ConnectionString = textBoxConnectionString.Text;
+                this.textBoxConnectionString.Text = Connector.ConnectionString;
                 MessageBox.Show("Успешно подключено!");
                 this.Close();
             }

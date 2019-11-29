@@ -14,17 +14,17 @@
         <Label Content="Дата занятия: "  HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <DatePicker x:Name="dataPickerMain" Margin="30,60,30,0" VerticalAlignment="Top" FontSize="14"/>
 
-        <Label Content="Код группы: "  HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxIdGroup" Margin="30,260,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="20" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Группа: "  HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxGroup" Margin="30,260,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
-        <Label Content="Код учителя: "  HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxIdTeacher" Margin="30,110,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="20" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Учитель: "  HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxTeacher" Margin="30,110,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
-        <Label Content="Код студента: "  HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxIdStudent" Margin="30,160,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="20" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Студент: "  HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxStudent" Margin="30,160,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
-        <Label Content="Код темы: "  HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxIdTopic" Margin="30,210,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="20" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Тема: "  HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxTopic" Margin="30,210,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
         <Label Content="Отметка: "  HorizontalAlignment="Left" Margin="30,290,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <TextBox x:Name="textBoxMark" Margin="30,310,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="2"/>

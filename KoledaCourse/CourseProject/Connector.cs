@@ -10,12 +10,9 @@ namespace CourseProject
 {
     class Connector
     {
-        private string connectionString;
+        public static string ConnectionString { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True";
 
-        public Connector()
-        {
-            this.connectionString = CurrentDB.ConnectionString;
-        }
+        public Connector() { }
 
         public void CheckConnection(string connectionString)
         {
@@ -30,7 +27,7 @@ namespace CourseProject
         {
             string tableName = tN;
             DataTable datatable = new DataTable();
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
 
                 sqlConnection.Open();
@@ -48,7 +45,7 @@ namespace CourseProject
 
         public List<string> GetListTables()
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 List<string> tables = new List<string>();
@@ -63,9 +60,26 @@ namespace CourseProject
             }
         }
 
+        public DataTable GetComboBoxData(string tN)
+        {
+            string tableName = tN;
+            DataTable datatable = new DataTable();
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                sqlConnection.Open();
+                string query = $"SELECT * FROM {tableName}";
+                SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(datatable);
+                cmd.Dispose();
+                sqlConnection.Close();
+                return datatable;
+            }
+        }
+
         public void InsertIntoStudents( string surname, string name, string patronymic)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 string query = $"INSERT INTO Students VALUES (N'{surname}', N'{name}', N'{patronymic}', {-1})";
@@ -79,7 +93,7 @@ namespace CourseProject
 
         public void InsertIntoTeachers(string surname, string name, string patronymic)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 string query = $"INSERT INTO Teachers VALUES (N'{surname}', N'{name}', N'{patronymic}')";
@@ -92,7 +106,7 @@ namespace CourseProject
 
         public void InsertIntoNotes(int id_t, int id_s, int id_g, int id_topic, DateTime? dateTime, string mark)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
 
                 sqlConnection.Open();
@@ -106,7 +120,7 @@ namespace CourseProject
 
         public void InsertIntoGroups(string group)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 string query = $"INSERT INTO Groups VALUES (N'{group}')";
@@ -119,7 +133,7 @@ namespace CourseProject
 
         public void InsertIntoTopics(string topic)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this.connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
                 string query = $"INSERT INTO Topics VALUES (N'{topic}')";

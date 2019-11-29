@@ -12,7 +12,7 @@ namespace CourseProject
     public partial class Tables : Window
     {
         DataClassesDataContext dataClasses = new DataClassesDataContext(
-            Properties.Settings.Default.ERBookConnectionString);
+            Connector.ConnectionString);
 
         public Tables()
         {
