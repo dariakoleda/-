@@ -26,9 +26,9 @@ namespace CourseProject
             }
         }
 
-        public ITable GetDataTable(string tN)
+        public ITable GetDataTable(string tableName)
         {
-            var table = (ITable)dataClasses.GetType().GetProperty(tN).GetValue(dataClasses, null);
+            var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
             return table;
         }
 
@@ -92,8 +92,10 @@ namespace CourseProject
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id, string tableName)
         {
+            var table = GetDataTable(tableName);
+
             var mbResult = MessageBox.Show($"Вы точно хотите удалить элемент с номером {id}", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);   
         }
     }
