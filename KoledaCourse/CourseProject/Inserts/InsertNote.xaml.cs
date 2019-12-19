@@ -67,24 +67,24 @@ namespace CourseProject.Inserts
         public void FillComboBoxes()
         {
             Connector connector = new Connector();
-            DataTable dt_teachers = connector.GetComboBoxData("Teachers");
-            DataTable dt_students = connector.GetComboBoxData("Students");
-            DataTable dt_groups = connector.GetComboBoxData("Groups");
-            DataTable dt_topics = connector.GetComboBoxData("Topics");
+            var dt_teachers = connector.GetDataTable("Teachers");
+            var dt_students = connector.GetDataTable("Students");
+            var dt_groups = connector.GetDataTable("Groups");
+            var dt_topics = connector.GetDataTable("Topics");
 
-            comboBoxTeacher.ItemsSource = dt_teachers.DefaultView;
+            comboBoxTeacher.ItemsSource = dt_teachers;
             comboBoxTeacher.DisplayMemberPath = "surname";
             comboBoxTeacher.SelectedValuePath = "id_teacher";
-
-            comboBoxStudent.ItemsSource = dt_students.DefaultView;
+            
+            comboBoxStudent.ItemsSource = dt_students;
             comboBoxStudent.DisplayMemberPath = "surname";
             comboBoxStudent.SelectedValuePath = "id_student";
 
-            comboBoxGroup.ItemsSource = dt_groups.DefaultView;
+            comboBoxGroup.ItemsSource = dt_groups;
             comboBoxGroup.DisplayMemberPath = "group_name";
             comboBoxGroup.SelectedValuePath = "id_group";
 
-            comboBoxTopic.ItemsSource = dt_topics.DefaultView;
+            comboBoxTopic.ItemsSource = dt_topics;
             comboBoxTopic.DisplayMemberPath = "topic_name";
             comboBoxTopic.SelectedValuePath = "id_topic";
         }

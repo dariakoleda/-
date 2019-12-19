@@ -14,6 +14,8 @@ namespace CourseProject
         DataClassesDataContext dataClasses = new DataClassesDataContext(
             Connector.ConnectionString);
 
+        private Connector connector = new Connector();
+
         public Tables()
         {
             InitializeComponent();
@@ -26,7 +28,6 @@ namespace CourseProject
 
         private void FillComboBox()
         {
-            Connector connector = new Connector();
             List<string> tables = connector.GetListTables();
             this.comboBoxMain.ItemsSource = tables;
         }
@@ -34,8 +35,7 @@ namespace CourseProject
         private void comboBoxMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string tableName = (sender as ComboBox).SelectedItem as string;
-            Type tableType = Type.GetType($"CourseProject.{tableName}");
-            dataGridMain.ItemsSource = dataClasses.GetTable(tableType);
+            dataGridMain.ItemsSource = connector.GetDataTable(tableName);
             labelTableName.Content = $"Выбрана таблица \"{tableName}\":";
         }
 
