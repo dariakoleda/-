@@ -20,7 +20,7 @@
             <Button x:Name="buttonReset" Content="Сбросить" VerticalAlignment="Bottom" FontSize="16" Margin="0, 0, 30, 0" MinWidth="150" Click="buttonReset_Click"/>
             <Button x:Name="buttonDelete" Content="Удалить" VerticalAlignment="Bottom" FontSize="16" Margin="0, 0, 30, 0" MinWidth="150" Click="buttonDelete_Click"/>
         </UniformGrid>
-        <DataGrid x:Name="dataGridMain" Margin="200,100,60,30" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="True" Height="300" MinWidth="400" ColumnWidth="*" RowHeight="50" ItemsSource="{Binding CurrentTable}"/>
+        <DataGrid x:Name="dataGridMain" Margin="200,100,60,30" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="True" Height="300" MinWidth="400" ColumnWidth="*" RowHeight="50" ItemsSource="{Binding dataClasses.Topic}"/>
         <ComboBox x:Name="comboBoxFields" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"  Margin="30,30,120,30" FontSize="14"/>
         <Button x:Name="buttonSearch" Content="&#x1F50E;" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" FontSize="16" Margin="30,30,60,30"/>
     </Grid>

@@ -85,9 +85,11 @@ namespace CourseProject
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 sqlConnection.Open();
-                SqlCommand command = new SqlCommand(query, sqlConnection);
-                command.ExecuteNonQuery();
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
+                }   
                 sqlConnection.Close();
             }
         }
