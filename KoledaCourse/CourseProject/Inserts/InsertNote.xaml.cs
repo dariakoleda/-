@@ -67,7 +67,7 @@ namespace CourseProject.Inserts
         public void FillComboBoxes()
         {
             Connector connector = new Connector();
-            var dt_teachers = connector.GetDataTable("Teachers");
+           /* var dt_teachers = connector.GetDataTable("Teachers");
             var dt_students = connector.GetDataTable("Students");
             var dt_groups = connector.GetDataTable("Groups");
             var dt_topics = connector.GetDataTable("Topics");
@@ -86,7 +86,7 @@ namespace CourseProject.Inserts
 
             comboBoxTopic.ItemsSource = dt_topics;
             comboBoxTopic.DisplayMemberPath = "topic_name";
-            comboBoxTopic.SelectedValuePath = "id_topic";
+            comboBoxTopic.SelectedValuePath = "id_topic";*/
         }
     }
 }

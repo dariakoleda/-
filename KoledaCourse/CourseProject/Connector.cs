@@ -6,6 +6,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Windows;
 using System.Data.Linq;
+using System.Linq;
 
 namespace CourseProject
 {
@@ -69,8 +70,10 @@ namespace CourseProject
 
         public void InsertTopic(string topic)
         {
-            Topic topics = new Topic();
-            topics.topic_name = topic;
+            Topic topics = new Topic
+            {
+                topic_name = topic
+            };
             dataClasses.Topics.InsertOnSubmit(topics);
             SubmitChanges();
         }
@@ -94,11 +97,11 @@ namespace CourseProject
             }
         }
 
-        public void Delete(int id, string tableName)
+        public void DeleteTopic(Topic topicRow)
         {
-            var table = GetDataTable(tableName);
-
-            var mbResult = MessageBox.Show($"Вы точно хотите удалить элемент с номером {id}", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);   
+            Topic topic = (from t in dataClasses.Topics where t.id_topic == topicRow.id_topic select t).Single();
+            dataClasses.Topics.DeleteOnSubmit(topic);
+            SubmitChanges();
         }
     }
 }
