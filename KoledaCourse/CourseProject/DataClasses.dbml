@@ -48,4 +48,14 @@
       <Association Name="Topic_Note" Member="Notes" ThisKey="id_topic" OtherKey="id_topic" Type="Note" />
     </Type>
   </Table>
+  <Table Name="dbo.NotesView" Member="NotesView">
+    <Type Name="NotesView">
+      <Column Name="[Фамилия учителя]" Member="Фамилия_учителя" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[Фамилия студента]" Member="Фамилия_студента" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="lesson_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="mark" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
