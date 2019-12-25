@@ -14,6 +14,7 @@ namespace CourseProject.Inserts
         public InsertTopic()
         {
             InitializeComponent();
+            UpdateDataGrid();
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
@@ -32,7 +33,11 @@ namespace CourseProject.Inserts
                     string topic = textBoxName.Text.Trim();
                     if (string.IsNullOrEmpty(topic))
                         throw new Exception("Введите название темы!");
-                    connector.InsertTopic(topic);
+                    var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (mbResult == MessageBoxResult.Yes)
+                    {
+                        connector.InsertTopic(topic);
+                    }
                 }
                 UpdateDataGrid();
                 MessageBox.Show("Запись успешно добавлена!");
@@ -51,9 +56,12 @@ namespace CourseProject.Inserts
                 var item = dataGridMain.SelectedItem ?? throw new Exception("Выберите запись для удаления!");
                 var topicRow = dataGridMain.SelectedItem as Topic;
                 var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                using (Connector connector = new Connector())
+                if (mbResult == MessageBoxResult.Yes)
                 {
-                    connector.DeleteTopic(topicRow);
+                    using (Connector connector = new Connector())
+                    {
+                        connector.DeleteTopic(topicRow);
+                    }
                 }
                 UpdateDataGrid();
                 MessageBox.Show("Запись успешно удалена!");
@@ -78,7 +86,7 @@ namespace CourseProject.Inserts
                 using (Connector connector = new Connector())
                 {
                     dataGridMain.ItemsSource = connector.GetTable(tableName);
-                }  
+                }
             }
             catch (Exception ex)
             {

@@ -41,6 +41,21 @@ namespace CourseProject
             return tableNames;
         }
 
+        public List<string> GetColumnsList(string tableName)
+        {
+            Type tableType = Type.GetType(tableName);
+            var fields = dataClasses.Mapping.MappingSource
+                                  .GetModel(typeof(DataClassesDataContext))
+                                  .GetMetaType(tableType)
+                                  .DataMembers;
+            List<string> columnNames = new List<string>();
+            foreach (var field in fields)
+            {
+                columnNames.Add(field.MappedName);
+            }
+            return columnNames;
+        }
+
         public void InsertGroup(string groupName)
         {
             Group group = new Group
@@ -103,20 +118,6 @@ namespace CourseProject
         private void SubmitChanges()
         {
             dataClasses.SubmitChanges();
-        }
-
-        private void Insert(string query)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
-            {
-                sqlConnection.Open();
-                using (SqlCommand command = new SqlCommand(query, sqlConnection))
-                {
-                    command.ExecuteNonQuery();
-                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command)) { }
-                }   
-                sqlConnection.Close();
-            }
         }
 
         public void DeleteTopic(Topic topicRow)
