@@ -24,7 +24,7 @@ namespace CourseProject
             }
         }
 
-        public ITable GetDataTable(string tableName)
+        public ITable GetTable(string tableName)
         {
             var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
             return table;

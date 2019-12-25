@@ -26,8 +26,10 @@ namespace CourseProject.Inserts
         {
             try
             {
-                Connector connector = new Connector();
-                connector.InsertIntoGroups(textBoxName.Text);
+                using (Connector connector = new Connector())
+                {
+                    connector.InsertGroup(textBoxName.Text);
+                }
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)

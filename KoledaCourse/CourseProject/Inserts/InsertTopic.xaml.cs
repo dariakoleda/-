@@ -82,7 +82,7 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+                    dataGridMain.ItemsSource = connector.GetTable(tableName);
                 }  
             }
             catch (Exception ex)

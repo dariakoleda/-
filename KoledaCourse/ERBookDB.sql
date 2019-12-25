@@ -81,3 +81,11 @@ INSERT INTO Notes VALUES
 	(3, 3, 3, 3, '2019-10-12', N'н'), 
 	(4, 4, 4, 4, '2019-10-13', N'3'), 
 	(5, 5, 5, 5, '2019-10-14', N'6')
+
+GO
+CREATE VIEW NotesView AS
+	SELECT Teachers.surname AS [Фамилия учителя], Students.surname AS [Фамилия студента], Groups.group_name, Topics.topic_name, Notes.lesson_date, Notes.mark FROM Notes
+	JOIN Teachers ON Notes.id_teacher = Teachers.id_teacher
+	JOIN Students ON Notes.id_student = Students.id_student
+	JOIN Topics ON Notes.id_topic = Topics.id_topic
+	JOIN Groups ON Notes.id_group = Groups.id_group

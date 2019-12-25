@@ -32,7 +32,7 @@ namespace CourseProject
             string tableName = (sender as ComboBox).SelectedItem as string;
             using (Connector connector = new Connector())
             {
-                dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+                dataGridMain.ItemsSource = connector.GetTable(tableName);
             }
             labelTableName.Content = $"Выбрана таблица \"{tableName}\":";
         }
