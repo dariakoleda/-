@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Windows.Controls;
 using System.Data;
 using System.Collections.Generic;
-using System.Windows;
 using System.Data.Linq;
 using System.Linq;
 
 namespace CourseProject
 {
-    class Connector
+    class Connector : IDisposable
     {
         public static string ConnectionString { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True";
 
-        DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
+        readonly DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
 
         public Connector() { }
 
@@ -68,6 +65,40 @@ namespace CourseProject
             Insert(query);
         }
 
+        public void InsertGroup(string groupName)
+        {
+            Group group = new Group
+            {
+                group_name = groupName
+            };
+            dataClasses.Groups.InsertOnSubmit(group);
+            SubmitChanges();
+        }
+
+        public void InsertTeacher(string surname, string name, string patronymic)
+        {
+            Teacher teacher = new Teacher
+            {
+                surname = surname,
+                name = name,
+                patronymic = patronymic
+            };
+            dataClasses.Teachers.InsertOnSubmit(teacher);
+            SubmitChanges();
+        }
+
+        public void InsertStudent(string surname, string name, string patronymic)
+        {
+            Student student = new Student
+            {
+                surname = surname,
+                name = name,
+                patronymic = patronymic
+            };
+            dataClasses.Students.InsertOnSubmit(student);
+            SubmitChanges();
+        }
+
         public void InsertTopic(string topic)
         {
             Topic topics = new Topic
@@ -75,6 +106,21 @@ namespace CourseProject
                 topic_name = topic
             };
             dataClasses.Topics.InsertOnSubmit(topics);
+            SubmitChanges();
+        }
+
+        public void InsertNote(int id_t, int id_s, int id_g, int id_topic, DateTime dateTime, string mark)
+        {
+            Note note = new Note
+            {
+                id_teacher = id_t,
+                id_student = id_s,
+                id_group = id_g,
+                id_topic = id_topic,
+                lesson_date = dateTime,
+                mark = mark
+            };
+            dataClasses.Notes.InsertOnSubmit(note);
             SubmitChanges();
         }
 
@@ -102,6 +148,11 @@ namespace CourseProject
             Topic topic = (from t in dataClasses.Topics where t.id_topic == topicRow.id_topic select t).Single();
             dataClasses.Topics.DeleteOnSubmit(topic);
             SubmitChanges();
+        }
+
+        public void Dispose()
+        {
+            dataClasses.Dispose();
         }
     }
 }

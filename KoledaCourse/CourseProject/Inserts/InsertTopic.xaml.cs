@@ -32,11 +32,13 @@ namespace CourseProject.Inserts
         {
             try
             {
-                Connector connector = new Connector();
-                string topic = textBoxName.Text.Trim();
-                if (string.IsNullOrEmpty(topic))
-                    throw new Exception("Введите название темы!");
-                connector.InsertTopic(topic);
+                using (Connector connector = new Connector())
+                {
+                    string topic = textBoxName.Text.Trim();
+                    if (string.IsNullOrEmpty(topic))
+                        throw new Exception("Введите название темы!");
+                    connector.InsertTopic(topic);
+                }
                 UpdateDataGrid();
                 MessageBox.Show("Запись успешно добавлена!");
 
@@ -51,11 +53,13 @@ namespace CourseProject.Inserts
         {
             try
             {
-                Connector connector = new Connector();
                 var item = dataGridMain.SelectedItem ?? throw new Exception("Выберите запись для удаления!");
                 var topicRow = dataGridMain.SelectedItem as Topic;
                 var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                connector.DeleteTopic(topicRow);
+                using (Connector connector = new Connector())
+                {
+                    connector.DeleteTopic(topicRow);
+                }
                 UpdateDataGrid();
                 MessageBox.Show("Запись успешно удалена!");
 
@@ -76,8 +80,10 @@ namespace CourseProject.Inserts
         {
             try
             {
-                Connector connector = new Connector();
-                dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+                using (Connector connector = new Connector())
+                {
+                    dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+                }  
             }
             catch (Exception ex)
             {
