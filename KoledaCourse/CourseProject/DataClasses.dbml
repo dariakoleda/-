@@ -58,4 +58,28 @@
       <Column Name="mark" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.GroupsView" Member="GroupsView">
+    <Type Name="GroupsView">
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentsView" Member="StudentsView">
+    <Type Name="StudentsView">
+      <Column Name="surname" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeachersView" Member="TeachersView">
+    <Type Name="TeachersView">
+      <Column Name="surname" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TopicsView" Member="TopicsView">
+    <Type Name="TopicsView">
+      <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

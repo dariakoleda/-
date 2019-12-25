@@ -89,3 +89,19 @@ CREATE VIEW NotesView AS
 	JOIN Students ON Notes.id_student = Students.id_student
 	JOIN Topics ON Notes.id_topic = Topics.id_topic
 	JOIN Groups ON Notes.id_group = Groups.id_group
+
+GO
+CREATE VIEW GroupsView AS
+	SELECT Groups.group_name FROM Groups
+
+GO
+CREATE VIEW TopicsView AS
+	SELECT Topics.topic_name FROM Topics
+
+GO
+CREATE VIEW TeachersView AS
+	SELECT Teachers.surname, Teachers.name, Teachers.patronymic FROM Teachers
+
+GO
+CREATE VIEW StudentsView AS
+	SELECT Students.surname, Students.name, Students.patronymic FROM Students

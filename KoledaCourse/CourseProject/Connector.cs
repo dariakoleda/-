@@ -24,6 +24,13 @@ namespace CourseProject
             }
         }
 
+        public ITable GetView(string tableName)
+        {
+            tableName += "View";
+            var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
+            return table;
+        }
+
         public ITable GetTable(string tableName)
         {
             var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);

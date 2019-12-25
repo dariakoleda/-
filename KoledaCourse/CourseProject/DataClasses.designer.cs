@@ -124,6 +124,38 @@ namespace CourseProject
 				return this.GetTable<NotesView>();
 			}
 		}
+		
+		public System.Data.Linq.Table<GroupsView> GroupsView
+		{
+			get
+			{
+				return this.GetTable<GroupsView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StudentsView> StudentsView
+		{
+			get
+			{
+				return this.GetTable<StudentsView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TeachersView> TeachersView
+		{
+			get
+			{
+				return this.GetTable<TeachersView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TopicsView> TopicsView
+		{
+			get
+			{
+				return this.GetTable<TopicsView>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Notes")]
@@ -1184,6 +1216,186 @@ namespace CourseProject
 				if ((this._mark != value))
 				{
 					this._mark = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GroupsView")]
+	public partial class GroupsView
+	{
+		
+		private string _group_name;
+		
+		public GroupsView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_name", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string group_name
+		{
+			get
+			{
+				return this._group_name;
+			}
+			set
+			{
+				if ((this._group_name != value))
+				{
+					this._group_name = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StudentsView")]
+	public partial class StudentsView
+	{
+		
+		private string _surname;
+		
+		private string _name;
+		
+		private string _patronymic;
+		
+		public StudentsView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string surname
+		{
+			get
+			{
+				return this._surname;
+			}
+			set
+			{
+				if ((this._surname != value))
+				{
+					this._surname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_patronymic", DbType="VarChar(20)")]
+		public string patronymic
+		{
+			get
+			{
+				return this._patronymic;
+			}
+			set
+			{
+				if ((this._patronymic != value))
+				{
+					this._patronymic = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TeachersView")]
+	public partial class TeachersView
+	{
+		
+		private string _surname;
+		
+		private string _name;
+		
+		private string _patronymic;
+		
+		public TeachersView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string surname
+		{
+			get
+			{
+				return this._surname;
+			}
+			set
+			{
+				if ((this._surname != value))
+				{
+					this._surname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_patronymic", DbType="VarChar(30)")]
+		public string patronymic
+		{
+			get
+			{
+				return this._patronymic;
+			}
+			set
+			{
+				if ((this._patronymic != value))
+				{
+					this._patronymic = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TopicsView")]
+	public partial class TopicsView
+	{
+		
+		private string _topic_name;
+		
+		public TopicsView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
+		public string topic_name
+		{
+			get
+			{
+				return this._topic_name;
+			}
+			set
+			{
+				if ((this._topic_name != value))
+				{
+					this._topic_name = value;
 				}
 			}
 		}

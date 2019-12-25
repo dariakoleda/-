@@ -85,7 +85,7 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    dataGridMain.ItemsSource = connector.GetTable(tableName);
+                    dataGridMain.ItemsSource = connector.GetView(tableName);
                 }
             }
             catch (Exception ex)
