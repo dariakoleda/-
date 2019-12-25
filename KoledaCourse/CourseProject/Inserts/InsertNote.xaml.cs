@@ -29,32 +29,36 @@ namespace CourseProject.Inserts
         {
             try
             {
+
                 Checker checker = new Checker();
                 if (checker.IsCorrectMark(textBoxMark.Text))
                 {
-                    Connector connector = new Connector();
-                    connector.InsertIntoNotes
-                        (
-                        Convert.ToInt32(comboBoxTeacher.SelectedValue),
-                        Convert.ToInt32(comboBoxStudent.SelectedValue),
-                        Convert.ToInt32(comboBoxGroup.SelectedValue),
-                        Convert.ToInt32(comboBoxTopic.SelectedValue),
-                        dataPickerMain.SelectedDate,
-                        textBoxMark.Text
-                        );
+                    using (Connector connector = new Connector())
+                    {
+                        DateTime dateTime = dataPickerMain.SelectedDate ?? throw new Exception("Выберите дату!");
+                        connector.InsertNote(
+                            Convert.ToInt32(comboBoxTeacher.SelectedValue),
+                            Convert.ToInt32(comboBoxStudent.SelectedValue),
+                            Convert.ToInt32(comboBoxGroup.SelectedValue),
+                            Convert.ToInt32(comboBoxTopic.SelectedValue),
+                            dateTime,
+                            textBoxMark.Text
+                            );
+                    }
+
                     MessageBox.Show("Запись успешно добавлена!");
                 }
                 else
                 {
                     MessageBox.Show("Неверная отметка!");
                 }
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
             }
-            
+
         }
 
 
@@ -67,26 +71,26 @@ namespace CourseProject.Inserts
         public void FillComboBoxes()
         {
             Connector connector = new Connector();
-           /* var dt_teachers = connector.GetDataTable("Teachers");
-            var dt_students = connector.GetDataTable("Students");
-            var dt_groups = connector.GetDataTable("Groups");
-            var dt_topics = connector.GetDataTable("Topics");
+            /* var dt_teachers = connector.GetDataTable("Teachers");
+             var dt_students = connector.GetDataTable("Students");
+             var dt_groups = connector.GetDataTable("Groups");
+             var dt_topics = connector.GetDataTable("Topics");
 
-            comboBoxTeacher.ItemsSource = dt_teachers;
-            comboBoxTeacher.DisplayMemberPath = "surname";
-            comboBoxTeacher.SelectedValuePath = "id_teacher";
-            
-            comboBoxStudent.ItemsSource = dt_students;
-            comboBoxStudent.DisplayMemberPath = "surname";
-            comboBoxStudent.SelectedValuePath = "id_student";
+             comboBoxTeacher.ItemsSource = dt_teachers;
+             comboBoxTeacher.DisplayMemberPath = "surname";
+             comboBoxTeacher.SelectedValuePath = "id_teacher";
 
-            comboBoxGroup.ItemsSource = dt_groups;
-            comboBoxGroup.DisplayMemberPath = "group_name";
-            comboBoxGroup.SelectedValuePath = "id_group";
+             comboBoxStudent.ItemsSource = dt_students;
+             comboBoxStudent.DisplayMemberPath = "surname";
+             comboBoxStudent.SelectedValuePath = "id_student";
 
-            comboBoxTopic.ItemsSource = dt_topics;
-            comboBoxTopic.DisplayMemberPath = "topic_name";
-            comboBoxTopic.SelectedValuePath = "id_topic";*/
+             comboBoxGroup.ItemsSource = dt_groups;
+             comboBoxGroup.DisplayMemberPath = "group_name";
+             comboBoxGroup.SelectedValuePath = "id_group";
+
+             comboBoxTopic.ItemsSource = dt_topics;
+             comboBoxTopic.DisplayMemberPath = "topic_name";
+             comboBoxTopic.SelectedValuePath = "id_topic";*/
         }
     }
 }

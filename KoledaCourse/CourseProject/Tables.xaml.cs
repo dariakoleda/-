@@ -11,38 +11,30 @@ namespace CourseProject
     /// </summary>
     public partial class Tables : Window
     {
-        DataClassesDataContext dataClasses = new DataClassesDataContext(
-            Connector.ConnectionString);
-
-        private Connector connector = new Connector();
-
         public Tables()
         {
             InitializeComponent();
             FillComboBox();
-            if (dataClasses.DatabaseExists())
-            {
-                this.comboBoxMain.SelectedIndex = 0;
-            }
         }
 
         private void FillComboBox()
         {
-            List<string> tables = connector.GetListTables();
+            List<string> tables = new List<string>();
+            using (Connector connector = new Connector())
+            {
+                tables = connector.GetListTables();
+            }
             this.comboBoxMain.ItemsSource = tables;
         }
 
         private void comboBoxMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string tableName = (sender as ComboBox).SelectedItem as string;
-            dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+            using (Connector connector = new Connector())
+            {
+                dataGridMain.ItemsSource = connector.GetDataTable(tableName);
+            }
             labelTableName.Content = $"Выбрана таблица \"{tableName}\":";
-        }
-
-        private void buttonUpdateDB_Click(object sender, RoutedEventArgs e)
-        {
-            dataClasses.SubmitChanges();
-            MessageBox.Show("Таблица успешно обновлена!");
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)

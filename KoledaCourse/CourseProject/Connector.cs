@@ -41,30 +41,6 @@ namespace CourseProject
             return tableNames;
         }
 
-        public void InsertIntoStudents(string surname, string name, string patronymic)
-        {
-            string query = $"INSERT INTO Students VALUES (N'{surname}', N'{name}', N'{patronymic}', {-1})";
-            Insert(query);
-        }
-
-        public void InsertIntoTeachers(string surname, string name, string patronymic)
-        {
-            string query = $"INSERT INTO Teachers VALUES (N'{surname}', N'{name}', N'{patronymic}')";
-            Insert(query);
-        }
-
-        public void InsertIntoNotes(int id_t, int id_s, int id_g, int id_topic, DateTime? dateTime, string mark)
-        {
-            string query = $"INSERT INTO Notes VALUES ({id_t}, {id_s}, {id_g}, {id_topic}, '{dateTime}', N'{mark}')";
-            Insert(query);
-        }
-
-        public void InsertIntoGroups(string group)
-        {
-            string query = $"INSERT INTO Groups VALUES (N'{group}')";
-            Insert(query);
-        }
-
         public void InsertGroup(string groupName)
         {
             Group group = new Group

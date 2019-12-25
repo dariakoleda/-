@@ -26,8 +26,10 @@ namespace CourseProject.Inserts
         { 
             try
             {
-                Connector connector = new Connector();
-                connector.InsertIntoTeachers(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                using (Connector connector = new Connector())
+                {
+                    connector.InsertTeacher(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                } 
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
