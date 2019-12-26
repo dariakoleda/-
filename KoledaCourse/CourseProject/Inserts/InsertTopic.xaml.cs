@@ -15,6 +15,7 @@ namespace CourseProject.Inserts
         {
             InitializeComponent();
             UpdateDataGrid();
+            FillComboBox();
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,7 +34,7 @@ namespace CourseProject.Inserts
                     string topic = textBoxName.Text.Trim();
                     if (string.IsNullOrEmpty(topic))
                         throw new Exception("Введите название темы!");
-                    var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    var mbResult = MessageBox.Show($"Вы точно хотите добавить данный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (mbResult == MessageBoxResult.Yes)
                     {
                         connector.InsertTopic(topic);
@@ -54,7 +55,7 @@ namespace CourseProject.Inserts
             try
             {
                 var item = dataGridMain.SelectedItem ?? throw new Exception("Выберите запись для удаления!");
-                var topicRow = dataGridMain.SelectedItem as Topic;
+                var topicRow = dataGridMain.SelectedItem as TopicsView;
                 var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (mbResult == MessageBoxResult.Yes)
                 {
@@ -85,7 +86,39 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    dataGridMain.ItemsSource = connector.GetView(tableName);
+                    dataGridMain.ItemsSource = connector.GetTableByType(typeof(TopicsView));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FillComboBox()
+        {
+            try
+            {
+                using (Connector connector = new Connector())
+                {
+                    comboBoxFields.ItemsSource = connector.GetColumnsList(typeof(TopicsView));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (comboBoxFields.SelectedItem == null)
+                    throw new Exception("Выберите фильтр для поиска!");
+                using (Connector connector = new Connector())
+                {
+                    dataGridMain.ItemsSource = connector.SearchTopic(textBoxName.Text);
                 }
             }
             catch (Exception ex)

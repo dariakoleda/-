@@ -72,10 +72,10 @@ namespace CourseProject.Inserts
         {
             using (Connector connector = new Connector())
             {
-                var dt_teachers = connector.GetTable("Teachers");
-                var dt_students = connector.GetTable("Students");
-                var dt_groups = connector.GetTable("Groups");
-                var dt_topics = connector.GetTable("Topics");
+                var dt_teachers = connector.GetTableByName("Teachers");
+                var dt_students = connector.GetTableByName("Students");
+                var dt_groups = connector.GetTableByName("Groups");
+                var dt_topics = connector.GetTableByName("Topics");
 
                 comboBoxTeacher.ItemsSource = dt_teachers;
                 comboBoxTeacher.DisplayMemberPath = "surname";

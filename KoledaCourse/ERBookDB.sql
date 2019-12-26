@@ -96,7 +96,7 @@ CREATE VIEW GroupsView AS
 
 GO
 CREATE VIEW TopicsView AS
-	SELECT Topics.topic_name FROM Topics
+	SELECT Topics.topic_name FROM Topics --черерз as поменять названия
 
 GO
 CREATE VIEW TeachersView AS

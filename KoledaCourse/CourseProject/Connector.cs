@@ -31,13 +31,19 @@ namespace CourseProject
             return table;
         }
 
-        public ITable GetTable(string tableName)
+        public ITable GetTableByName(string tableName)
         {
             var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
             return table;
         }
 
-        public List<string> GetListTables()
+        public ITable GetTableByType(Type tableType)
+        {
+            var table = dataClasses.GetTable(tableType);
+            return table;
+        }
+
+        public List<string> GetListOfTables()
         {
             var tableList = dataClasses.Mapping.GetTables();
             var tableNames = new List<string>();
@@ -48,9 +54,8 @@ namespace CourseProject
             return tableNames;
         }
 
-        public List<string> GetColumnsList(string tableName)
+        public List<string> GetColumnsList(Type tableType)
         {
-            Type tableType = Type.GetType(tableName);
             var fields = dataClasses.Mapping.MappingSource
                                   .GetModel(typeof(DataClassesDataContext))
                                   .GetMetaType(tableType)
@@ -127,11 +132,17 @@ namespace CourseProject
             dataClasses.SubmitChanges();
         }
 
-        public void DeleteTopic(Topic topicRow)
+        public void DeleteTopic(TopicsView topicRow)
         {
-            Topic topic = (from t in dataClasses.Topics where t.id_topic == topicRow.id_topic select t).Single();
+            Topic topic = (from t in dataClasses.Topics where t.topic_name == topicRow.topic_name select t).Single();
             dataClasses.Topics.DeleteOnSubmit(topic);
             SubmitChanges();
+        }
+
+        public IQueryable<TopicsView> SearchTopic(string topicName)
+        {
+            var table = from r in dataClasses.TopicsView where r.topic_name.ToLower().Contains(topicName.ToLower()) select r;
+            return table;
         }
 
         public void Dispose()

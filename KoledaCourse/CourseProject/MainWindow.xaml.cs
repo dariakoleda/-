@@ -60,5 +60,11 @@ namespace CourseProject
             insertGroup.Show();
             this.Close();
         }
+
+        private void menuReports_Click(object sender, RoutedEventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.Show();
+        }
     }
 }

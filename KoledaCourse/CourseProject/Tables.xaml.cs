@@ -22,7 +22,7 @@ namespace CourseProject
             List<string> tables = new List<string>();
             using (Connector connector = new Connector())
             {
-                tables = connector.GetListTables();
+                tables = connector.GetListOfTables();
             }
             this.comboBoxMain.ItemsSource = tables;
         }
@@ -32,7 +32,7 @@ namespace CourseProject
             string tableName = (sender as ComboBox).SelectedItem as string;
             using (Connector connector = new Connector())
             {
-                dataGridMain.ItemsSource = connector.GetTable(tableName);
+                dataGridMain.ItemsSource = connector.GetTableByName(tableName);
             }
             labelTableName.Content = $"Выбрана таблица \"{tableName}\":";
         }

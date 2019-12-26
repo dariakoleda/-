@@ -96,3 +96,14 @@ E:\KoledaCourse\CourseProject\obj\Debug\CourseProject.Properties.Resources.resou
 E:\KoledaCourse\CourseProject\obj\Debug\CourseProject.csproj.GenerateResource.cache
 E:\KoledaCourse\CourseProject\obj\Debug\CourseProject.exe
 E:\KoledaCourse\CourseProject\obj\Debug\CourseProject.pdb
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.csproj.CopyComplete
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Reports.g.cs
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Reports.baml
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RdlCompile.cache
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RdlCompile.compiled
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.exe.config
