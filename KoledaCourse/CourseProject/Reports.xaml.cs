@@ -41,7 +41,7 @@ namespace CourseProject
                     }
             }
             Connector connector = new Connector();
-            var table = connector.GetTableByType(typeof(Topic));
+            var table = connector.GetTableByType(typeof(Topics));
             ReportDataSource reportDataSource = new ReportDataSource(dataSourceName, table);
             reportViewerMain.LocalReport.DataSources.Add(reportDataSource);
             reportViewerMain.LocalReport.ReportEmbeddedResource = $"CourseProject.{reportName}.rdlc";

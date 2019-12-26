@@ -11,7 +11,7 @@ namespace CourseProject
     {
         public static string ConnectionString { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True";
 
-        readonly DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
+        public readonly DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
 
         public Connector() { }
 
@@ -70,7 +70,7 @@ namespace CourseProject
 
         public void InsertGroup(string groupName)
         {
-            Group group = new Group
+            Groups group = new Groups
             {
                 group_name = groupName
             };
@@ -80,7 +80,7 @@ namespace CourseProject
 
         public void InsertTeacher(string surname, string name, string patronymic)
         {
-            Teacher teacher = new Teacher
+            Teachers teacher = new Teachers
             {
                 surname = surname,
                 name = name,
@@ -92,7 +92,7 @@ namespace CourseProject
 
         public void InsertStudent(string surname, string name, string patronymic)
         {
-            Student student = new Student
+            Students student = new Students
             {
                 surname = surname,
                 name = name,
@@ -104,7 +104,7 @@ namespace CourseProject
 
         public void InsertTopic(string topic)
         {
-            Topic topics = new Topic
+            Topics topics = new Topics
             {
                 topic_name = topic
             };
@@ -112,9 +112,9 @@ namespace CourseProject
             SubmitChanges();
         }
 
-        public void InsertNote(int id_t, int id_s, int id_g, int id_topic, DateTime dateTime, string mark)
+        public void InsertNote(int id_t, int id_s, int id_g, int id_topic, DateTime dateTime, int mark)
         {
-            Note note = new Note
+            Notes note = new Notes
             {
                 id_teacher = id_t,
                 id_student = id_s,
@@ -134,7 +134,7 @@ namespace CourseProject
 
         public void DeleteTopic(TopicsView topicRow)
         {
-            Topic topic = (from t in dataClasses.Topics where t.topic_name == topicRow.topic_name select t).Single();
+            Topics topic = (from t in dataClasses.Topics where t.topic_name == topicRow.topic_name select t).Single();
             dataClasses.Topics.DeleteOnSubmit(topic);
             SubmitChanges();
         }

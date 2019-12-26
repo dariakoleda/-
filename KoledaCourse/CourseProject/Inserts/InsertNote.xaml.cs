@@ -29,30 +29,19 @@ namespace CourseProject.Inserts
         {
             try
             {
-
-                Checker checker = new Checker();
-                if (checker.IsCorrectMark(textBoxMark.Text))
+                using (Connector connector = new Connector())
                 {
-                    using (Connector connector = new Connector())
-                    {
-                        DateTime dateTime = dataPickerMain.SelectedDate ?? throw new Exception("Выберите дату!");
-                        connector.InsertNote(
-                            Convert.ToInt32(comboBoxTeacher.SelectedValue),
-                            Convert.ToInt32(comboBoxStudent.SelectedValue),
-                            Convert.ToInt32(comboBoxGroup.SelectedValue),
-                            Convert.ToInt32(comboBoxTopic.SelectedValue),
-                            dateTime,
-                            textBoxMark.Text
-                            );
-                    }
-
-                    MessageBox.Show("Запись успешно добавлена!");
+                    DateTime dateTime = dataPickerMain.SelectedDate ?? throw new Exception("Выберите дату!");
+                    connector.InsertNote(
+                        Convert.ToInt32(comboBoxTeacher.SelectedValue),
+                        Convert.ToInt32(comboBoxStudent.SelectedValue),
+                        Convert.ToInt32(comboBoxGroup.SelectedValue),
+                        Convert.ToInt32(comboBoxTopic.SelectedValue),
+                        dateTime,
+                        Convert.ToInt32(textBoxMark.Text)
+                        );
                 }
-                else
-                {
-                    MessageBox.Show("Неверная отметка!");
-                }
-
+                MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {

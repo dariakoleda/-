@@ -22,7 +22,7 @@ CREATE TABLE Students
 CREATE TABLE Groups
 (
 	id_group int IDENTITY(1,1) PRIMARY KEY,
-	group_name varchar(5) NOT NULL
+	group_name varchar(5) NOT NULL UNIQUE
 )
 
 CREATE TABLE Topics
@@ -46,6 +46,14 @@ CREATE TABLE Notes
 	CONSTRAINT FK_Topic_To_RB foreign key(id_topic) REFERENCES Topics(id_topic),
 	CONSTRAINT FK_Group_To_RB foreign key(id_group) REFERENCES Groups(id_group)
 )
+
+GO
+CREATE TRIGGER AvgMark_Tr On Notes AFTER INSERT, UPDATE AS
+	declare @id int
+	declare @avgMark float
+	set @id = (SELECT inserted.id_student FROM inserted)
+	set @avgMark = (SELECT AVG(Cast(Notes.mark AS float)) FROM Notes WHERE Notes.id_student = @id)
+	UPDATE Students SET average_mark = @avgMark WHERE id_student = @id
 
 INSERT INTO Teachers VALUES
 	(N'Григорьев', N'Максим', N'Юрьевич'),
@@ -75,12 +83,11 @@ INSERT INTO Topics VALUES
 	(N'Архитектура взимодействия'),
 	(N'Работа с целями пользователей')
 
-INSERT INTO Notes VALUES
-	(1, 1, 1, 1, '2019-10-10',N'6'), 
-	(2, 2, 2, 2, '2019-10-11', N'9'), 
-	(3, 3, 3, 3, '2019-10-12', N'3'), 
-	(4, 4, 4, 4, '2019-10-13', N'3'), 
-	(5, 5, 5, 5, '2019-10-14', N'6')
+INSERT INTO Notes VALUES (1, 1, 1, 1, '2019-10-10', N'6') 
+INSERT INTO Notes VALUES (1, 2, 1, 1, '2019-10-10', N'8') 
+INSERT INTO Notes VALUES (1, 3, 1, 1, '2019-10-10', N'3') 
+INSERT INTO Notes VALUES (1, 4, 1, 1, '2019-10-10', N'4') 
+INSERT INTO Notes VALUES (1, 5, 1, 1, '2019-10-10', N'4') 
 
 GO
 CREATE VIEW NotesView AS
@@ -105,11 +112,3 @@ CREATE VIEW TeachersView AS
 GO
 CREATE VIEW StudentsView AS
 	SELECT Students.surname, Students.name, Students.patronymic FROM Students
-
-GO
-CREATE TRIGGER AvgMark_Tr On Notes AFTER INSERT, UPDATE AS
-	declare @id int
-	declare @avgMark float
-	set @id = (SELECT inserted.id_student FROM inserted)
-	set @avgMark = (SELECT AVG(Cast(Notes.mark AS float)) FROM Notes WHERE Notes.id_student = @id)
-	UPDATE Students SET average_mark = @avgMark WHERE id_student = @id
