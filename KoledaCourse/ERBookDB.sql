@@ -39,8 +39,8 @@ CREATE TABLE Notes
 	id_group int NOT NULL,
 	id_topic int NOT NULL,
 	lesson_date date NOT NULL,
-	mark varchar(2),
-	CONSTRAINT CH_mark CHECK ([mark] in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10') OR [mark] = N'í' OR [mark] = NULL),
+	mark int,
+	CONSTRAINT CH_mark CHECK ([mark] BETWEEN 1 AND 10),
 	CONSTRAINT FK_Teachers_To_RB foreign key(id_teacher) REFERENCES Teachers(id_teacher),
 	CONSTRAINT FK_Students_To_RB foreign key(id_student) REFERENCES Students(id_student),
 	CONSTRAINT FK_Topic_To_RB foreign key(id_topic) REFERENCES Topics(id_topic),
@@ -78,7 +78,7 @@ INSERT INTO Topics VALUES
 INSERT INTO Notes VALUES
 	(1, 1, 1, 1, '2019-10-10',N'6'), 
 	(2, 2, 2, 2, '2019-10-11', N'9'), 
-	(3, 3, 3, 3, '2019-10-12', N'í'), 
+	(3, 3, 3, 3, '2019-10-12', N'3'), 
 	(4, 4, 4, 4, '2019-10-13', N'3'), 
 	(5, 5, 5, 5, '2019-10-14', N'6')
 
@@ -105,3 +105,11 @@ CREATE VIEW TeachersView AS
 GO
 CREATE VIEW StudentsView AS
 	SELECT Students.surname, Students.name, Students.patronymic FROM Students
+
+GO
+CREATE TRIGGER AvgMark_Tr On Notes AFTER INSERT, UPDATE AS
+	declare @id int
+	declare @avgMark float
+	set @id = (SELECT inserted.id_student FROM inserted)
+	set @avgMark = (SELECT AVG(Cast(Notes.mark AS float)) FROM Notes WHERE Notes.id_student = @id)
+	UPDATE Students SET average_mark = @avgMark WHERE id_student = @id
