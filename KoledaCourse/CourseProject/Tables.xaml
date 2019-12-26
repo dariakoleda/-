@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:CourseProject"
         mc:Ignorable="d"
         Title="Tables"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Height="1000" Width="1200"
         >
     <Grid>
 
         <Image x:Name="buttonBack" Source="back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
-        <DataGrid x:Name="dataGridMain" Margin="150,65,30,70" VerticalAlignment="Stretch" AutoGenerateColumns="True"/>
-        
+        <DataGrid x:Name="dataGridMain" Margin="150,65,460,70" AutoGenerateColumns="True" MinWidth="300"/>
+        <DataGrid x:Name="dataGridTopics" Margin="150,65,30,70" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400"/>
+
         <Label Content="Год:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <ComboBox x:Name="comboBoxYear" Margin="30, 60, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="90"/>
         

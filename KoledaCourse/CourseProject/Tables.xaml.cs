@@ -80,7 +80,7 @@ namespace CourseProject
             dataGridMain.ItemsSource = dataTable.DefaultView;
         }
 
-        private void FillDataGrid()
+        private void FillMainDataGrid()
         {
             CreateDataGrid();
             using (Connector connector = new Connector())
@@ -117,6 +117,11 @@ namespace CourseProject
             }
         }
 
+        private void FillTopicsDataGrid()
+        {
+
+        }
+
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -126,7 +131,7 @@ namespace CourseProject
 
         private void buttonShow_Click(object sender, RoutedEventArgs e)
         {
-            FillDataGrid();
+            FillMainDataGrid();
         }
     }
 }
