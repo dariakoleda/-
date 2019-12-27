@@ -103,7 +103,7 @@ CREATE VIEW GroupsView AS
 
 GO
 CREATE VIEW TopicsView AS
-	SELECT Topics.topic_name FROM Topics --черерз as поменять названия
+	SELECT Topics.topic_name FROM Topics
 
 GO
 CREATE VIEW TeachersView AS
@@ -112,3 +112,9 @@ CREATE VIEW TeachersView AS
 GO
 CREATE VIEW StudentsView AS
 	SELECT Students.surname, Students.name, Students.patronymic FROM Students
+
+GO
+CREATE VIEW TopicsDates AS
+	SELECT DISTINCT Topics.topic_name, Notes.lesson_date, Groups.group_name FROM Notes
+	JOIN Topics ON Notes.id_topic = Topics.id_topic
+	JOIN Groups ON Notes.id_group = Groups.id_group
