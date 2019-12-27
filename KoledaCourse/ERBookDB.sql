@@ -22,7 +22,7 @@ CREATE TABLE Students
 CREATE TABLE Groups
 (
 	id_group int IDENTITY(1,1) PRIMARY KEY,
-	group_name varchar(5) NOT NULL UNIQUE
+	group_name varchar(5) NOT NULL
 )
 
 CREATE TABLE Topics
