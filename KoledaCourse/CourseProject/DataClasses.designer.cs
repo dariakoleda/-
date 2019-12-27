@@ -156,6 +156,14 @@ namespace CourseProject
 				return this.GetTable<TopicsView>();
 			}
 		}
+		
+		public System.Data.Linq.Table<TopicsDates> TopicsDates
+		{
+			get
+			{
+				return this.GetTable<TopicsDates>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Topics")]
@@ -1396,6 +1404,69 @@ namespace CourseProject
 				if ((this._topic_name != value))
 				{
 					this._topic_name = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TopicsDates")]
+	public partial class TopicsDates
+	{
+		
+		private string _topic_name;
+		
+		private System.DateTime _lesson_date;
+		
+		private string _group_name;
+		
+		public TopicsDates()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
+		public string topic_name
+		{
+			get
+			{
+				return this._topic_name;
+			}
+			set
+			{
+				if ((this._topic_name != value))
+				{
+					this._topic_name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lesson_date", DbType="Date NOT NULL")]
+		public System.DateTime lesson_date
+		{
+			get
+			{
+				return this._lesson_date;
+			}
+			set
+			{
+				if ((this._lesson_date != value))
+				{
+					this._lesson_date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_name", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string group_name
+		{
+			get
+			{
+				return this._group_name;
+			}
+			set
+			{
+				if ((this._group_name != value))
+				{
+					this._group_name = value;
 				}
 			}
 		}

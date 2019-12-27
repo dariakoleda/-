@@ -82,4 +82,11 @@
       <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.TopicsDates" Member="TopicsDates">
+    <Type Name="TopicsDates">
+      <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="lesson_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

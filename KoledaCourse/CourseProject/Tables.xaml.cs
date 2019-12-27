@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq;
+using System.Globalization;
 
 namespace CourseProject
 {
@@ -13,7 +14,8 @@ namespace CourseProject
     public partial class Tables : Window
     {
 
-        DataTable dataTable = new DataTable();
+        DataTable mainDataTable = new DataTable();
+        DataTable topicsDataTable = new DataTable();
 
         class ComboboxItem
         {
@@ -49,7 +51,7 @@ namespace CourseProject
                 monthNum++;
                 comboBoxMonth.Items.Add(item);
             }
-            for (int i = 2017; i <= DateTime.Now.Year; i++)
+            for (int i = 2018; i <= DateTime.Now.Year; i++)
             {
                 ComboboxItem item = new ComboboxItem()
                 {
@@ -67,38 +69,50 @@ namespace CourseProject
             }
         }
 
-        private void CreateDataGrid()
+        private void CreateMainDataGrid()
         {
-            dataTable.Dispose();
-            dataTable = new DataTable();
-            dataTable.Columns.Add("Студент");
-            for (int i = 1; i <= 31; i++)
+            mainDataTable.Dispose();
+            mainDataTable = new DataTable();
+            mainDataTable.Columns.Add("Студент");
+            int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
+            int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
+            for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
             {
-                dataTable.Columns.Add(i.ToString());
+                mainDataTable.Columns.Add(i.ToString());
             }
-            dataTable.Columns.Add("Средняя отметка");
-            dataGridMain.ItemsSource = dataTable.DefaultView;
+            mainDataTable.Columns.Add("Средняя отметка");
+            dataGridMain.ItemsSource = mainDataTable.DefaultView;
         }
 
-        private void FillMainDataGrid()
+        private void CreateTopicsDataGrid()
         {
-            CreateDataGrid();
+            topicsDataTable.Dispose();
+            topicsDataTable = new DataTable();
+            topicsDataTable.Columns.Add("Дата занятия");
+            topicsDataTable.Columns.Add("Тема");
+            dataGridTopics.ItemsSource = topicsDataTable.DefaultView;
+        }
+
+        private void FillDataGrids()
+        {
+            CreateMainDataGrid();
+            CreateTopicsDataGrid();
             using (Connector connector = new Connector())
             {
+                int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
+                int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
                 var students = from s in connector.dataClasses.Students
                                join n in connector.dataClasses.Notes
                                on s.id_student equals n.id_student
-                               where n.id_group == (int)comboBoxGroup.SelectedValue
+                               where n.id_group == (int)comboBoxGroup.SelectedValue && n.lesson_date.Year == year && n.lesson_date.Month == month
                                select s;
                 foreach (var student in students)
                 {
-                    DataRow row = dataTable.NewRow();
+                    DataRow row = mainDataTable.NewRow();
                     row["Студент"] = student.surname;
                     row["Средняя отметка"] = student.average_mark;
-                    for (int day = 1; day <= 31; day++)
+                    for (int day = 1; day <= DateTime.DaysInMonth(year, month); day++)
                     {
-                        int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
-                        int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
                         DateTime date = new DateTime(year: year, month: month, day: day);
                         var curentStudent = (from n in connector.dataClasses.Notes
                                              join s in connector.dataClasses.Students
@@ -112,14 +126,21 @@ namespace CourseProject
                         if (mark != null)
                             row[day.ToString()] = mark;
                     }
-                    dataTable.Rows.Add(row);
+                    mainDataTable.Rows.Add(row);
+                }
+                string groupName = comboBoxGroup.Text;
+                var topicsDates = from t in connector.dataClasses.TopicsDates
+                                  where t.group_name == groupName && t.lesson_date.Year == year && t.lesson_date.Month == month
+                                  select t;
+
+                foreach (var topic in topicsDates)
+                {
+                    DataRow row = topicsDataTable.NewRow();
+                    row["Дата занятия"] = topic.lesson_date.ToString("dd-MMM-yy");
+                    row["Тема"] = topic.topic_name;
+                    topicsDataTable.Rows.Add(row);
                 }
             }
-        }
-
-        private void FillTopicsDataGrid()
-        {
-
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
@@ -131,7 +152,7 @@ namespace CourseProject
 
         private void buttonShow_Click(object sender, RoutedEventArgs e)
         {
-            FillMainDataGrid();
+            FillDataGrids();
         }
     }
 }
