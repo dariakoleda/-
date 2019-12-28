@@ -16,6 +16,7 @@ namespace CourseProject
 
         DataTable mainDataTable = new DataTable();
         DataTable topicsDataTable = new DataTable();
+        List<Student> listOfStudents = new List<Student>();
 
         class ComboboxItem
         {
@@ -79,6 +80,7 @@ namespace CourseProject
         {
             mainDataTable.Dispose();
             mainDataTable = new DataTable();
+            mainDataTable.Columns.Add("Код");
             mainDataTable.Columns.Add("Студент");
             int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
             int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
@@ -88,6 +90,7 @@ namespace CourseProject
             }
             mainDataTable.Columns.Add("Средняя отметка");
             dataGridMain.ItemsSource = mainDataTable.DefaultView;
+            dataGridMain.Columns[0].Visibility = Visibility.Collapsed;
         }
 
         private void CreateTopicsDataGrid()
@@ -101,6 +104,7 @@ namespace CourseProject
 
         private void FillDataGrids()
         {
+            listOfStudents.Clear();
             CreateMainDataGrid();
             CreateTopicsDataGrid();
             using (Connector connector = new Connector())
@@ -113,8 +117,9 @@ namespace CourseProject
                                where n.id_group == (int)comboBoxGroup.SelectedValue && n.lesson_date.Year == year && n.lesson_date.Month == month
                                select s;
                 foreach (var student in students)
-                {
+                { 
                     DataRow row = mainDataTable.NewRow();
+                    row["Код"] = student.id_student;
                     row["Студент"] = student.surname;
                     row["Средняя отметка"] = student.average_mark;
                     for (int day = 1; day <= DateTime.DaysInMonth(year, month); day++)
@@ -164,6 +169,11 @@ namespace CourseProject
         {
             Reports reports = new Reports();
             reports.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
