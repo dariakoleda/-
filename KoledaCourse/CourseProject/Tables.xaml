@@ -9,8 +9,13 @@
         WindowStartupLocation="CenterScreen" Height="600" Width="1200"
         >
     <Grid>
-
-        <Image x:Name="buttonBack" Source="back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
+        <Menu Height="20" VerticalAlignment="Top" HorizontalContentAlignment="Left">
+            <MenuItem Header="Файл"/>
+            <MenuItem x:Name="menuReports" Header="Отчёты" Click="menuReports_Click"/>
+            <MenuItem Header="Настройки">
+                <MenuItem x:Name="menuSettingsDB" Header="Подключение к БД" Click="menuSettingsDB_Click"/>
+            </MenuItem>
+        </Menu>
         <DataGrid x:Name="dataGridMain" Margin="200,65,460,70" AutoGenerateColumns="True" MinWidth="300"/>
         <DataGrid x:Name="dataGridTopics" Margin="150,65,30,70" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400"/>
 

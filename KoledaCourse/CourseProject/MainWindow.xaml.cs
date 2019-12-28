@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using CourseProject.Inserts;
 
 namespace CourseProject
@@ -13,58 +14,40 @@ namespace CourseProject
             InitializeComponent();
         }
 
-        private void menuSettingsDB_Click(object sender, RoutedEventArgs e)
+        private void buttonSignUp_Click(object sender, RoutedEventArgs e)
         {
-            DBSettings dBSettings = new DBSettings();
-            dBSettings.Show();
-        }
-
-        private void buttonShowWindowTables_Click(object sender, RoutedEventArgs e)
-        {
-            Tables tables = new Tables();
-            tables.Show();
+            SignUp signUp = new SignUp();
+            signUp.Show();
             this.Close();
         }
 
-        private void buttonShowInsertStudent_Click(object sender, RoutedEventArgs e)
+        private void buttonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            InsertStudent insertStudent = new InsertStudent();
-            insertStudent.Show();
-            this.Close();
-        }
-
-        private void buttonShowInsertTeacher_Click(object sender, RoutedEventArgs e)
-        {
-            InsertTeacher insertTeacher = new InsertTeacher();
-            insertTeacher.Show();
-            this.Close();
-        }
-
-        private void buttonShowInsertERBook_Click(object sender, RoutedEventArgs e)
-        {
-            InsertNote insertERBook = new InsertNote();
-            insertERBook.Show();
-            this.Close();
-        }
-
-        private void buttonShowInsertTopic_Click(object sender, RoutedEventArgs e)
-        {
-            InsertTopic insertTopic = new InsertTopic();
-            insertTopic.Show();
-            this.Close();
-        }
-
-        private void buttonShowInsertGroup_Click(object sender, RoutedEventArgs e)
-        {
-            InsertGroup insertGroup = new InsertGroup();
-            insertGroup.Show();
-            this.Close();
-        }
-
-        private void menuReports_Click(object sender, RoutedEventArgs e)
-        {
-            Reports reports = new Reports();
-            reports.Show();
+            using (Connector connector = new Connector())
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(textBoxLogin.Text.Trim()))
+                        throw new Exception("Введите логин!");
+                    if (passwordBox.Password.Length < 6)
+                        throw new Exception("Длина пароля от 6 символов!");
+                    bool is_exists = connector.SignIn(textBoxLogin.Text, passwordBox.Password);
+                    if (is_exists)
+                    {
+                        Tables tables = new Tables();
+                        tables.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный логин или пароль!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Checker.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp.xaml.cs">
+      <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tables.xaml.cs">
       <DependentUpon>Tables.xaml</DependentUpon>
@@ -157,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

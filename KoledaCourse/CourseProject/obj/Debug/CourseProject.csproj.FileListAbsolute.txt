@@ -107,3 +107,5 @@ C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debu
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RdlCompile.compiled
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Microsoft.SqlServer.Types.dll
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.exe.config
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\SignUp.g.cs
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\SignUp.baml

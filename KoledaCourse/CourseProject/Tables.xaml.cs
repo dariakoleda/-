@@ -28,6 +28,12 @@ namespace CourseProject
             }
         }
 
+        class Student
+        {
+            public string Surname { get; set; }
+            public int Id { get; set; }
+        }
+
         public Tables()
         {
             InitializeComponent();
@@ -143,16 +149,21 @@ namespace CourseProject
             }
         }
 
-        private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-        }
-
         private void buttonShow_Click(object sender, RoutedEventArgs e)
         {
             FillDataGrids();
+        }
+
+        private void menuSettingsDB_Click(object sender, RoutedEventArgs e)
+        {
+            DBSettings dBSettings = new DBSettings();
+            dBSettings.Show();
+        }
+
+        private void menuReports_Click(object sender, RoutedEventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.Show();
         }
     }
 }

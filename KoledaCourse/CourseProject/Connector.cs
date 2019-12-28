@@ -4,14 +4,18 @@ using System.Data;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CourseProject
 {
     class Connector : IDisposable
     {
         public static string ConnectionString { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True";
+        public static string ConnectionStringRegistartion { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=Registration;Integrated Security=True";
 
         public readonly DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
+        public readonly RegistrationDataContext registrationDataContext = new RegistrationDataContext(ConnectionStringRegistartion);
 
         public Connector() { }
 
@@ -145,9 +149,40 @@ namespace CourseProject
             return table;
         }
 
+        public void SignUp(string login, string password, string email)
+        {
+            registrationDataContext.Users.InsertOnSubmit(new Users
+            {
+                login = login,
+                password = SHA256ToString(password),
+                email = email,
+                role = "гость"
+            });
+            registrationDataContext.SubmitChanges();
+        }
+
+        public bool SignIn(string login, string password)
+        {
+            var user = from u in registrationDataContext.Users
+                       where u.login == login && u.password == SHA256ToString(password)
+                       select u;
+            int usersCount = user.Count();
+            if (usersCount == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void Dispose()
         {
             dataClasses.Dispose();
+        }
+
+        public static string SHA256ToString(string s)
+        {
+            using (var alg = SHA256.Create())
+                return string.Join(null, alg.ComputeHash(Encoding.UTF8.GetBytes(s)).Select(x => x.ToString("x2")));
         }
     }
 }
