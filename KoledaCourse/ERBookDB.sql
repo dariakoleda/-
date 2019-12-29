@@ -28,7 +28,8 @@ CREATE TABLE Groups
 CREATE TABLE Topics
 (
 	id_topic int IDENTITY(1,1) PRIMARY KEY,
-	topic_name varchar(70) NOT NULL UNIQUE
+	topic_name varchar(70) NOT NULL UNIQUE,
+	topic_date date NOT NULL UNIQUE,
 )
 
 CREATE TABLE Notes
@@ -77,11 +78,11 @@ INSERT INTO Groups VALUES
 	(N'т-714')
 
 INSERT INTO Topics VALUES
-	(N'CLR сборка, метаданные, ресурсы'),
-	(N'Angular 8, project structure'),
-	(N'Информационная архитектура'),
-	(N'Архитектура взимодействия'),
-	(N'Работа с целями пользователей')
+	(N'CLR сборка, метаданные, ресурсы', '2019-10-10'),
+	(N'Angular 8, project structure', '2019-10-11'),
+	(N'Информационная архитектура', '2019-10-12'),
+	(N'Архитектура взимодействия', '2019-10-13'),
+	(N'Работа с целями пользователей', '2019-10-14')
 
 INSERT INTO Notes VALUES (1, 1, 1, 1, '2019-10-10', N'6') 
 INSERT INTO Notes VALUES (1, 2, 1, 1, '2019-10-10', N'8') 
@@ -103,7 +104,7 @@ CREATE VIEW GroupsView AS
 
 GO
 CREATE VIEW TopicsView AS
-	SELECT Topics.topic_name FROM Topics
+	SELECT DISTINCT Topics.topic_name, Topics.topic_date FROM Topics
 
 GO
 CREATE VIEW TeachersView AS
@@ -114,8 +115,5 @@ CREATE VIEW StudentsView AS
 	SELECT Students.surname, Students.name, Students.patronymic FROM Students
 
 GO
-CREATE VIEW TopicsDates AS
-	SELECT DISTINCT Topics.id_topic, Topics.topic_name, Notes.lesson_date, Groups.group_name FROM Notes
-	JOIN Topics ON Notes.id_topic = Topics.id_topic
-	JOIN Groups ON Notes.id_group = Groups.id_group
-
+CREATE VIEW StudentsNotes AS
+	SELECT DISTINCT Students.id_student, Students.surname, Notes.id_group FROM Students JOIN Notes ON Notes.id_student = Students.id_student

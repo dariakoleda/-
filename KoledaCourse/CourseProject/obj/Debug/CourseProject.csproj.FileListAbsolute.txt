@@ -61,7 +61,6 @@ C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debu
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertTeacher.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertStudent.baml
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertTeacher.baml
-C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.csprojAssemblyReference.cache
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertGroup.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertNote.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertTopic.g.cs
@@ -109,3 +108,6 @@ C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debu
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.exe.config
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\SignUp.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\SignUp.baml
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.csprojAssemblyReference.cache
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\User.g.cs
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\User.baml

@@ -16,7 +16,6 @@ namespace CourseProject
 
         DataTable mainDataTable = new DataTable();
         DataTable topicsDataTable = new DataTable();
-        List<Student> listOfStudents = new List<Student>();
 
         class ComboboxItem
         {
@@ -27,12 +26,6 @@ namespace CourseProject
             {
                 return Text;
             }
-        }
-
-        class Student
-        {
-            public string Surname { get; set; }
-            public int Id { get; set; }
         }
 
         public Tables()
@@ -69,8 +62,7 @@ namespace CourseProject
             }
             using (Connector connector = new Connector())
             {
-                var dt_groups = connector.GetTableByType(typeof(Groups));
-                comboBoxGroup.ItemsSource = dt_groups;
+                comboBoxGroup.ItemsSource = connector.dataClasses.Groups;
                 comboBoxGroup.DisplayMemberPath = "group_name";
                 comboBoxGroup.SelectedValuePath = "id_group";
             }
@@ -106,31 +98,32 @@ namespace CourseProject
 
         private void FillDataGrids()
         {
-            listOfStudents.Clear();
             CreateMainDataGrid();
             CreateTopicsDataGrid();
             using (Connector connector = new Connector())
             {
                 int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
                 int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
-                var students = from s in connector.dataClasses.Students
-                               join n in connector.dataClasses.Notes
-                               on s.id_student equals n.id_student
-                               where n.id_group == (int)comboBoxGroup.SelectedValue && n.lesson_date.Year == year && n.lesson_date.Month == month
+                var students = from s in connector.dataClasses.StudentsNotes
+                               where s.id_group == (int)comboBoxGroup.SelectedValue
                                select s;
                 foreach (var student in students)
                 {
                     DataRow row = mainDataTable.NewRow();
                     row["Код"] = student.id_student;
                     row["Студент"] = student.surname;
-                    row["Средняя отметка"] = student.average_mark;
+                    mainDataTable.Rows.Add(row);
+                }
+                foreach (DataRow row in mainDataTable.Rows)
+                {
+                    int id_student = Convert.ToInt32(row["Код"].ToString());
                     for (int day = 1; day <= DateTime.DaysInMonth(year, month); day++)
                     {
                         DateTime date = new DateTime(year: year, month: month, day: day);
                         var curentStudent = (from n in connector.dataClasses.Notes
                                              join s in connector.dataClasses.Students
                                              on n.id_student equals s.id_student
-                                             where n.lesson_date == date && n.id_student == student.id_student
+                                             where n.lesson_date == date && n.id_student == id_student
                                              select n).FirstOrDefault();
                         if (curentStudent == null)
                             continue;
@@ -139,17 +132,16 @@ namespace CourseProject
                         if (mark != null)
                             row[day.ToString()] = mark;
                     }
-                    mainDataTable.Rows.Add(row);
                 }
                 string groupName = comboBoxGroup.Text;
-                var topicsDates = from t in connector.dataClasses.TopicsDates
-                                  where t.group_name == groupName && t.lesson_date.Year == year && t.lesson_date.Month == month
+                var topicsDates = from t in connector.dataClasses.Topics
+                                  where t.topic_date.Year == year && t.topic_date.Month == month
                                   select t;
 
                 foreach (var topic in topicsDates)
                 {
                     DataRow row = topicsDataTable.NewRow();
-                    row["Дата занятия"] = topic.lesson_date.ToString("dd-MMM-yy");
+                    row["Дата занятия"] = topic.topic_date.ToString("dd-MMM-yy");
                     row["Тема"] = topic.topic_name;
                     row["Код"] = topic.id_topic;
                     topicsDataTable.Rows.Add(row);
@@ -181,7 +173,65 @@ namespace CourseProject
 
         private void buttonSubmit_Click(object sender, RoutedEventArgs e)
         {
+            int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
+            int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
 
+            foreach (DataRow row in mainDataTable.Rows)
+            {
+                int id_student = Convert.ToInt32(row["Код"].ToString());
+                for (int day = 1; day <= DateTime.DaysInMonth(year, month); day++)
+                {
+                    using (Connector connector = new Connector())
+                    {
+                        if (row[day.ToString()].ToString() == "")
+                        {
+                            continue;
+                        }
+                        DateTime date = new DateTime(year: year, month: month, day: day);
+                        int mark = Convert.ToInt32(row[day.ToString()].ToString());
+                        var note = (from n in connector.dataClasses.Notes
+                                    where n.id_student == id_student && n.lesson_date == date
+                                    select n);
+                        if (note.Count() == 0)
+                        {
+
+                        }
+                        try
+                        {
+                            note.Single().mark = mark;
+                            connector.dataClasses.SubmitChanges();
+                        }
+                        catch
+                        {
+                            var topic = (from t in connector.dataClasses.Topics
+                                         where t.topic_date == date
+                                         select t);
+                            var noteInsert = (from n in connector.dataClasses.Notes
+                                              where n.id_student == id_student
+                                              select n).FirstOrDefault();
+                            if (topic.Count() == 0)
+                            {
+                                MessageBox.Show($"В базе нет темы за {date.ToString("dd-MMM-yy")}!");
+                                return;
+                            }
+                            int id_g = (int)comboBoxGroup.SelectedValue;
+                            int id_s = id_student;
+                            int id_topic = topic.Single().id_topic;
+                            int id_t = noteInsert.id_teacher;
+                            connector.dataClasses.Notes.InsertOnSubmit(new Notes
+                            {
+                                id_group = id_g,
+                                id_student = id_s,
+                                id_teacher = id_t,
+                                id_topic = id_topic,
+                                lesson_date = date,
+                                mark = mark
+                            });
+                            connector.dataClasses.SubmitChanges();
+                        }
+                    }
+                }
+            }
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
@@ -206,7 +256,8 @@ namespace CourseProject
 
         private void menuUser_Click(object sender, RoutedEventArgs e)
         {
-
+            User user = new User();
+            user.Show();
         }
     }
 }

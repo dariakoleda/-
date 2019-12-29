@@ -30,9 +30,6 @@ namespace CourseProject
 		
     #region Определения метода расширяемости
     partial void OnCreated();
-    partial void InsertTopics(Topics instance);
-    partial void UpdateTopics(Topics instance);
-    partial void DeleteTopics(Topics instance);
     partial void InsertGroups(Groups instance);
     partial void UpdateGroups(Groups instance);
     partial void DeleteGroups(Groups instance);
@@ -45,6 +42,9 @@ namespace CourseProject
     partial void InsertTeachers(Teachers instance);
     partial void UpdateTeachers(Teachers instance);
     partial void DeleteTeachers(Teachers instance);
+    partial void InsertTopics(Topics instance);
+    partial void UpdateTopics(Topics instance);
+    partial void DeleteTopics(Topics instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -75,14 +75,6 @@ namespace CourseProject
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Topics> Topics
-		{
-			get
-			{
-				return this.GetTable<Topics>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Groups> Groups
@@ -117,6 +109,14 @@ namespace CourseProject
 			}
 		}
 		
+		public System.Data.Linq.Table<Topics> Topics
+		{
+			get
+			{
+				return this.GetTable<Topics>();
+			}
+		}
+		
 		public System.Data.Linq.Table<GroupsView> GroupsView
 		{
 			get
@@ -141,14 +141,6 @@ namespace CourseProject
 			}
 		}
 		
-		public System.Data.Linq.Table<TeachersView> TeachersView
-		{
-			get
-			{
-				return this.GetTable<TeachersView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TopicsView> TopicsView
 		{
 			get
@@ -157,126 +149,12 @@ namespace CourseProject
 			}
 		}
 		
-		public System.Data.Linq.Table<TopicsDates> TopicsDates
+		public System.Data.Linq.Table<StudentsNotes> StudentsNotes
 		{
 			get
 			{
-				return this.GetTable<TopicsDates>();
+				return this.GetTable<StudentsNotes>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Topics")]
-	public partial class Topics : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_topic;
-		
-		private string _topic_name;
-		
-		private EntitySet<Notes> _Notes;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_topicChanging(int value);
-    partial void Onid_topicChanged();
-    partial void Ontopic_nameChanging(string value);
-    partial void Ontopic_nameChanged();
-    #endregion
-		
-		public Topics()
-		{
-			this._Notes = new EntitySet<Notes>(new Action<Notes>(this.attach_Notes), new Action<Notes>(this.detach_Notes));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_topic", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_topic
-		{
-			get
-			{
-				return this._id_topic;
-			}
-			set
-			{
-				if ((this._id_topic != value))
-				{
-					this.Onid_topicChanging(value);
-					this.SendPropertyChanging();
-					this._id_topic = value;
-					this.SendPropertyChanged("id_topic");
-					this.Onid_topicChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
-		public string topic_name
-		{
-			get
-			{
-				return this._topic_name;
-			}
-			set
-			{
-				if ((this._topic_name != value))
-				{
-					this.Ontopic_nameChanging(value);
-					this.SendPropertyChanging();
-					this._topic_name = value;
-					this.SendPropertyChanged("topic_name");
-					this.Ontopic_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topics_Notes", Storage="_Notes", ThisKey="id_topic", OtherKey="id_topic")]
-		public EntitySet<Notes> Notes
-		{
-			get
-			{
-				return this._Notes;
-			}
-			set
-			{
-				this._Notes.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Notes(Notes entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topics = this;
-		}
-		
-		private void detach_Notes(Notes entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topics = null;
 		}
 	}
 	
@@ -416,11 +294,11 @@ namespace CourseProject
 		
 		private EntityRef<Groups> _Groups;
 		
-		private EntityRef<Topics> _Topics;
-		
 		private EntityRef<Students> _Students;
 		
 		private EntityRef<Teachers> _Teachers;
+		
+		private EntityRef<Topics> _Topics;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -445,9 +323,9 @@ namespace CourseProject
 		public Notes()
 		{
 			this._Groups = default(EntityRef<Groups>);
-			this._Topics = default(EntityRef<Topics>);
 			this._Students = default(EntityRef<Students>);
 			this._Teachers = default(EntityRef<Teachers>);
+			this._Topics = default(EntityRef<Topics>);
 			OnCreated();
 		}
 		
@@ -641,40 +519,6 @@ namespace CourseProject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topics_Notes", Storage="_Topics", ThisKey="id_topic", OtherKey="id_topic", IsForeignKey=true)]
-		public Topics Topics
-		{
-			get
-			{
-				return this._Topics.Entity;
-			}
-			set
-			{
-				Topics previousValue = this._Topics.Entity;
-				if (((previousValue != value) 
-							|| (this._Topics.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Topics.Entity = null;
-						previousValue.Notes.Remove(this);
-					}
-					this._Topics.Entity = value;
-					if ((value != null))
-					{
-						value.Notes.Add(this);
-						this._id_topic = value.id_topic;
-					}
-					else
-					{
-						this._id_topic = default(int);
-					}
-					this.SendPropertyChanged("Topics");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Students_Notes", Storage="_Students", ThisKey="id_student", OtherKey="id_student", IsForeignKey=true)]
 		public Students Students
 		{
@@ -739,6 +583,40 @@ namespace CourseProject
 						this._id_teacher = default(int);
 					}
 					this.SendPropertyChanged("Teachers");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topics_Notes", Storage="_Topics", ThisKey="id_topic", OtherKey="id_topic", IsForeignKey=true)]
+		public Topics Topics
+		{
+			get
+			{
+				return this._Topics.Entity;
+			}
+			set
+			{
+				Topics previousValue = this._Topics.Entity;
+				if (((previousValue != value) 
+							|| (this._Topics.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Topics.Entity = null;
+						previousValue.Notes.Remove(this);
+					}
+					this._Topics.Entity = value;
+					if ((value != null))
+					{
+						value.Notes.Add(this);
+						this._id_topic = value.id_topic;
+					}
+					else
+					{
+						this._id_topic = default(int);
+					}
+					this.SendPropertyChanged("Topics");
 				}
 			}
 		}
@@ -1112,6 +990,144 @@ namespace CourseProject
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Topics")]
+	public partial class Topics : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_topic;
+		
+		private string _topic_name;
+		
+		private System.DateTime _topic_date;
+		
+		private EntitySet<Notes> _Notes;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_topicChanging(int value);
+    partial void Onid_topicChanged();
+    partial void Ontopic_nameChanging(string value);
+    partial void Ontopic_nameChanged();
+    partial void Ontopic_dateChanging(System.DateTime value);
+    partial void Ontopic_dateChanged();
+    #endregion
+		
+		public Topics()
+		{
+			this._Notes = new EntitySet<Notes>(new Action<Notes>(this.attach_Notes), new Action<Notes>(this.detach_Notes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_topic", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_topic
+		{
+			get
+			{
+				return this._id_topic;
+			}
+			set
+			{
+				if ((this._id_topic != value))
+				{
+					this.Onid_topicChanging(value);
+					this.SendPropertyChanging();
+					this._id_topic = value;
+					this.SendPropertyChanged("id_topic");
+					this.Onid_topicChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
+		public string topic_name
+		{
+			get
+			{
+				return this._topic_name;
+			}
+			set
+			{
+				if ((this._topic_name != value))
+				{
+					this.Ontopic_nameChanging(value);
+					this.SendPropertyChanging();
+					this._topic_name = value;
+					this.SendPropertyChanged("topic_name");
+					this.Ontopic_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_date", DbType="Date NOT NULL")]
+		public System.DateTime topic_date
+		{
+			get
+			{
+				return this._topic_date;
+			}
+			set
+			{
+				if ((this._topic_date != value))
+				{
+					this.Ontopic_dateChanging(value);
+					this.SendPropertyChanging();
+					this._topic_date = value;
+					this.SendPropertyChanged("topic_date");
+					this.Ontopic_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topics_Notes", Storage="_Notes", ThisKey="id_topic", OtherKey="id_topic")]
+		public EntitySet<Notes> Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				this._Notes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Notes(Notes entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topics = this;
+		}
+		
+		private void detach_Notes(Notes entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topics = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GroupsView")]
 	public partial class GroupsView
 	{
@@ -1319,74 +1335,13 @@ namespace CourseProject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TeachersView")]
-	public partial class TeachersView
-	{
-		
-		private string _surname;
-		
-		private string _name;
-		
-		private string _patronymic;
-		
-		public TeachersView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string surname
-		{
-			get
-			{
-				return this._surname;
-			}
-			set
-			{
-				if ((this._surname != value))
-				{
-					this._surname = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_patronymic", DbType="VarChar(30)")]
-		public string patronymic
-		{
-			get
-			{
-				return this._patronymic;
-			}
-			set
-			{
-				if ((this._patronymic != value))
-				{
-					this._patronymic = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TopicsView")]
 	public partial class TopicsView
 	{
 		
 		private string _topic_name;
+		
+		private System.DateTime _topic_date;
 		
 		public TopicsView()
 		{
@@ -1407,84 +1362,82 @@ namespace CourseProject
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_date", DbType="Date NOT NULL")]
+		public System.DateTime topic_date
+		{
+			get
+			{
+				return this._topic_date;
+			}
+			set
+			{
+				if ((this._topic_date != value))
+				{
+					this._topic_date = value;
+				}
+			}
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TopicsDates")]
-	public partial class TopicsDates
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StudentsNotes")]
+	public partial class StudentsNotes
 	{
 		
-		private int _id_topic;
+		private int _id_student;
 		
-		private string _topic_name;
+		private string _surname;
 		
-		private System.DateTime _lesson_date;
+		private int _id_group;
 		
-		private string _group_name;
-		
-		public TopicsDates()
+		public StudentsNotes()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_topic", DbType="Int NOT NULL")]
-		public int id_topic
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_student", DbType="Int NOT NULL")]
+		public int id_student
 		{
 			get
 			{
-				return this._id_topic;
+				return this._id_student;
 			}
 			set
 			{
-				if ((this._id_topic != value))
+				if ((this._id_student != value))
 				{
-					this._id_topic = value;
+					this._id_student = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
-		public string topic_name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string surname
 		{
 			get
 			{
-				return this._topic_name;
+				return this._surname;
 			}
 			set
 			{
-				if ((this._topic_name != value))
+				if ((this._surname != value))
 				{
-					this._topic_name = value;
+					this._surname = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lesson_date", DbType="Date NOT NULL")]
-		public System.DateTime lesson_date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_group", DbType="Int NOT NULL")]
+		public int id_group
 		{
 			get
 			{
-				return this._lesson_date;
+				return this._id_group;
 			}
 			set
 			{
-				if ((this._lesson_date != value))
+				if ((this._id_group != value))
 				{
-					this._lesson_date = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_name", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string group_name
-		{
-			get
-			{
-				return this._group_name;
-			}
-			set
-			{
-				if ((this._group_name != value))
-				{
-					this._group_name = value;
+					this._id_group = value;
 				}
 			}
 		}
