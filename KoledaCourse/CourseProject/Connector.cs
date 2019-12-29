@@ -163,14 +163,17 @@ namespace CourseProject
 
         public bool SignIn(string login, string password)
         {
-            var user = from u in registrationDataContext.Users
-                       where u.login == login && u.password == SHA256ToString(password)
-                       select u;
-            int usersCount = user.Count();
-            if (usersCount == 0)
+            var user = (from u in registrationDataContext.Users
+                        where u.login == login && u.password == SHA256ToString(password)
+                        select u).Single();
+            if (user == null)
             {
                 return false;
             }
+            CurrentUser.Email = user.email;
+            CurrentUser.Login = user.login;
+            CurrentUser.Password = user.password;
+            CurrentUser.Role = user.role;
             return true;
         }
 

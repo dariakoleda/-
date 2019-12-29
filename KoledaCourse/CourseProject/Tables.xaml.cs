@@ -97,9 +97,11 @@ namespace CourseProject
         {
             topicsDataTable.Dispose();
             topicsDataTable = new DataTable();
+            topicsDataTable.Columns.Add("Код");
             topicsDataTable.Columns.Add("Дата занятия");
             topicsDataTable.Columns.Add("Тема");
             dataGridTopics.ItemsSource = topicsDataTable.DefaultView;
+            dataGridTopics.Columns[0].Visibility = Visibility.Collapsed;
         }
 
         private void FillDataGrids()
@@ -117,7 +119,7 @@ namespace CourseProject
                                where n.id_group == (int)comboBoxGroup.SelectedValue && n.lesson_date.Year == year && n.lesson_date.Month == month
                                select s;
                 foreach (var student in students)
-                { 
+                {
                     DataRow row = mainDataTable.NewRow();
                     row["Код"] = student.id_student;
                     row["Студент"] = student.surname;
@@ -149,6 +151,7 @@ namespace CourseProject
                     DataRow row = topicsDataTable.NewRow();
                     row["Дата занятия"] = topic.lesson_date.ToString("dd-MMM-yy");
                     row["Тема"] = topic.topic_name;
+                    row["Код"] = topic.id_topic;
                     topicsDataTable.Rows.Add(row);
                 }
             }
@@ -172,6 +175,36 @@ namespace CourseProject
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonSubmit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonInsert_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuManual_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuUser_Click(object sender, RoutedEventArgs e)
         {
 
         }

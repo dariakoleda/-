@@ -1413,6 +1413,8 @@ namespace CourseProject
 	public partial class TopicsDates
 	{
 		
+		private int _id_topic;
+		
 		private string _topic_name;
 		
 		private System.DateTime _lesson_date;
@@ -1421,6 +1423,22 @@ namespace CourseProject
 		
 		public TopicsDates()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_topic", DbType="Int NOT NULL")]
+		public int id_topic
+		{
+			get
+			{
+				return this._id_topic;
+			}
+			set
+			{
+				if ((this._id_topic != value))
+				{
+					this._id_topic = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_topic_name", DbType="VarChar(70) NOT NULL", CanBeNull=false)]

@@ -6,29 +6,46 @@
         xmlns:local="clr-namespace:CourseProject"
         mc:Ignorable="d"
         Title="Tables"
-        WindowStartupLocation="CenterScreen" Height="600" Width="1200"
+        WindowStartupLocation="CenterScreen" Height="800" Width="1200"
         Loaded="Window_Loaded"
         >
     <Grid>
-        <Menu Height="20" VerticalAlignment="Top" HorizontalContentAlignment="Left">
-            <MenuItem Header="Файл"/>
-            <MenuItem x:Name="menuReports" Header="Отчёты" Click="menuReports_Click"/>
+        <Menu Height="20" VerticalAlignment="Top">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Файл">
+                <MenuItem x:Name="menuReports" Header="Отчёты" Click="menuReports_Click"/>
+            </MenuItem>
             <MenuItem Header="Настройки">
                 <MenuItem x:Name="menuSettingsDB" Header="Подключение к БД" Click="menuSettingsDB_Click"/>
+                <MenuItem x:Name="menuSettingsRoles" Header="Изменить роль" Click="menuSettingsRoles_Click"/>
             </MenuItem>
+            <MenuItem x:Name="menuAbout" Header="О программе">
+                <MenuItem x:Name="menuManual" Header="Справка" Click="menuManual_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="menuUser" Header="👤" Click="menuUser_Click" HorizontalAlignment="Right" FontSize="16"/>
         </Menu>
-        <DataGrid x:Name="dataGridMain" Margin="200,65,460,70" AutoGenerateColumns="True" MinWidth="300"/>
-        <DataGrid x:Name="dataGridTopics" Margin="150,65,30,70" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400"/>
+        <DataGrid x:Name="dataGridMain" Margin="200,60,460,100" VerticalAlignment="Stretch" AutoGenerateColumns="True" MinWidth="300" MinHeight="600"/>
+        <DataGrid x:Name="dataGridTopics" Margin="150,60,30,100" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400" MinHeight="600"/>
 
         <Label Content="Год:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxYear" Margin="30, 60, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="90"/>
+        <ComboBox x:Name="comboBoxYear" Margin="30, 60, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
         
-        <Label Content="Месяц:" HorizontalAlignment="Left" Margin="30,100,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxMonth" Margin="30, 120, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="90"/>
+        <Label Content="Месяц:" HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxMonth" Margin="30, 110, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
 
-        <Label Content="Группа:" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxGroup" Margin="30, 170, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="90"/>
-        
-        <Button x:Name="buttonShow" Margin="30, 220, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="90" Content="Показать" Click="buttonShow_Click"/>
+        <Label Content="Группа:" HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxGroup" Margin="30, 160, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+
+        <Button x:Name="buttonShow" Margin="30, 190, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Content="Показать" Click="buttonShow_Click"/>
+
+        <UniformGrid Margin="200,700,30, 30" VerticalAlignment="Bottom" Columns="3" Rows="1" Height="30">
+            <Button x:Name="buttonSubmit" Content="Подтвердить" FontSize="16" Click="buttonSubmit_Click"/>
+            <Button x:Name="buttonInsert" Content="Добавить" FontSize="16" Click="buttonInsert_Click"/>
+            <Button x:Name="buttonUpdate" Content="Обновить" FontSize="16" Click="buttonUpdate_Click"/>
+        </UniformGrid>
     </Grid>
 </Window>

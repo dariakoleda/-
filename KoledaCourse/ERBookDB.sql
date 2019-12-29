@@ -16,19 +16,19 @@ CREATE TABLE Students
 	surname varchar(20) NOT NULL,
 	name varchar(20) NOT NULL,
 	patronymic varchar(20),
-	average_mark float DEFAULT 0
+	average_mark float
 )
 
 CREATE TABLE Groups
 (
 	id_group int IDENTITY(1,1) PRIMARY KEY,
-	group_name varchar(5) NOT NULL
+	group_name varchar(5) NOT NULL UNIQUE
 )
 
 CREATE TABLE Topics
 (
 	id_topic int IDENTITY(1,1) PRIMARY KEY,
-	topic_name varchar(70) NOT NULL
+	topic_name varchar(70) NOT NULL UNIQUE
 )
 
 CREATE TABLE Notes
@@ -115,6 +115,7 @@ CREATE VIEW StudentsView AS
 
 GO
 CREATE VIEW TopicsDates AS
-	SELECT DISTINCT Topics.topic_name, Notes.lesson_date, Groups.group_name FROM Notes
+	SELECT DISTINCT Topics.id_topic, Topics.topic_name, Notes.lesson_date, Groups.group_name FROM Notes
 	JOIN Topics ON Notes.id_topic = Topics.id_topic
 	JOIN Groups ON Notes.id_group = Groups.id_group
+
