@@ -19,5 +19,10 @@ namespace CourseProject
             labelLogin.Content = CurrentUser.Login;
             labelRole.Content = CurrentUser.Role;
         }
+
+        private void buttonLogout_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

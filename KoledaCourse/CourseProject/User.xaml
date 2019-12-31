@@ -18,5 +18,6 @@
 
         <Label Content="Email: " FontSize="16" Margin="30, 160, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label x:Name="labelEmail" Margin="30, 190, 30, 0" VerticalAlignment="Top" FontSize="14" Background="LightGray"/>
+        <Button x:Name="buttonLogout" Content="Выйти" VerticalAlignment="Bottom" Margin="30, 0, 30, 30" FontSize="18" Click="buttonLogout_Click" IsDefault="True"/>
     </Grid>
 </Window>

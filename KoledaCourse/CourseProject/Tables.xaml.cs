@@ -205,10 +205,6 @@ namespace CourseProject
                                     on n.id_topic equals t.id_topic
                                     where n.id_student == id_student && t.topic_date == date
                                     select n);
-                        if (!note.Any())
-                        {
-
-                        }
                         try
                         {
                             note.Single().mark = mark;
@@ -273,7 +269,13 @@ namespace CourseProject
         private void menuUser_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
-            user.Show();
+            var result = user.ShowDialog();
+            if (result == true)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
         }
     }
 }
