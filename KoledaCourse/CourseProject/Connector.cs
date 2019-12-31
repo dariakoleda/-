@@ -11,11 +11,8 @@ namespace CourseProject
 {
     class Connector : IDisposable
     {
-        public static string ConnectionString { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=ERBook;Integrated Security=True";
-        public static string ConnectionStringRegistartion { get; set; } = "Data Source=.\\SQLEXPRESS;Initial Catalog=Registration;Integrated Security=True";
-
-        public readonly DataClassesDataContext dataClasses = new DataClassesDataContext(ConnectionString);
-        public readonly RegistrationDataContext registrationDataContext = new RegistrationDataContext(ConnectionStringRegistartion);
+        public readonly DataClassesDataContext dataClasses = new DataClassesDataContext(Properties.Settings.Default.ERBookConnectionString);
+        public readonly RegistrationDataContext registrationDataContext = new RegistrationDataContext(Properties.Settings.Default.RegistrationConnectionString);
 
         public Connector() { }
 

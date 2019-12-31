@@ -46,6 +46,10 @@ namespace CourseProject
                     this.Close();
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такой логин уже существует!");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

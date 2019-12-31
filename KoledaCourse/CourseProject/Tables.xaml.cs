@@ -165,12 +165,6 @@ namespace CourseProject
             FillDataGrids();
         }
 
-        private void menuSettingsDB_Click(object sender, RoutedEventArgs e)
-        {
-            DBSettings dBSettings = new DBSettings();
-            dBSettings.Show();
-        }
-
         private void menuReports_Click(object sender, RoutedEventArgs e)
         {
             Reports reports = new Reports();
