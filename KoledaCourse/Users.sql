@@ -11,3 +11,5 @@ CREATE TABLE Users
 	role varchar(5) DEFAULT 'гость',
 	CONSTRAINT CH_role CHECK ([role] IN('гость', 'админ')),
 )
+
+SELECT * FROM Users

@@ -111,3 +111,5 @@ C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debu
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject.csprojAssemblyReference.cache
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\User.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\User.baml
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RoleChanger.g.cs
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RoleChanger.baml

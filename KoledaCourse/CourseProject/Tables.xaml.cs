@@ -221,6 +221,7 @@ namespace CourseProject
                             if (!topic.Any())
                             {
                                 MessageBox.Show($"В базе нет темы за {date.ToString("dd-MMM-yy")}!");
+                                FillDataGrids();
                                 return;
                             }
                             int id_g = (int)comboBoxGroup.SelectedValue;
@@ -237,14 +238,13 @@ namespace CourseProject
                     }
                 }
             }
-
             FillDataGrids();
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
-            InsertNote insertNote = new InsertNote();
-            var result = insertNote.ShowDialog();
+            InsertTopic insertTopic = new InsertTopic();
+            var result = insertTopic.ShowDialog();
             if (result == true)
             {
                 FillDataGrids();
@@ -253,12 +253,21 @@ namespace CourseProject
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            FillDataGrids();
+            try
+            {
+                FillDataGrids();
+            }
+            catch
+            {
+            }
+            
         }
 
         private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)
         {
-
+            RoleChanger roleChanger = new RoleChanger();
+            roleChanger.ShowDialog();
+            FillDataGrids();
         }
 
         private void menuManual_Click(object sender, RoutedEventArgs e)

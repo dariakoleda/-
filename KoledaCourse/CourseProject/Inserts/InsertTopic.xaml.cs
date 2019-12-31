@@ -15,7 +15,6 @@ namespace CourseProject.Inserts
             InitializeComponent();
             dataPickerMain.SelectedDate = DateTime.Now;
             UpdateDataGrid();
-            FillComboBox();
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
@@ -95,30 +94,13 @@ namespace CourseProject.Inserts
             }
         }
 
-        private void FillComboBox()
-        {
-            try
-            {
-                using (Connector connector = new Connector())
-                {
-                    comboBoxFields.ItemsSource = connector.GetColumnsList(typeof(TopicsView));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (comboBoxFields.SelectedItem == null)
-                    throw new Exception("Выберите фильтр для поиска!");
                 using (Connector connector = new Connector())
                 {
-                    dataGridMain.ItemsSource = connector.SearchTopic(textBoxName.Text);
+                    dataGridMain.ItemsSource = connector.SearchTopic(textBoxSearch.Text);
                 }
             }
             catch (Exception ex)
