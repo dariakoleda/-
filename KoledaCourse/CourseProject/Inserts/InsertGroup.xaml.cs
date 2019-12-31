@@ -13,6 +13,7 @@ namespace CourseProject.Inserts
         public InsertGroup()
         {
             InitializeComponent();
+            FillComboBox();
         }
 
         private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
@@ -28,13 +29,23 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    connector.InsertGroup(textBoxName.Text);
+                    connector.InsertGroup(textBoxName.Text, (int)comboBoxTeachers.SelectedValue);
                 }
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
+            }
+        }
+
+        private void FillComboBox()
+        {
+            using (Connector connector = new Connector())
+            {
+                comboBoxTeachers.ItemsSource = connector.dataClasses.Teachers;
+                comboBoxTeachers.DisplayMemberPath = "surname";
+                comboBoxTeachers.SelectedValuePath = "id_teacher";
             }
         }
 

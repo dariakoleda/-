@@ -9,26 +9,15 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <Image x:Name="buttonBack" Source="/back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
+        <Label Content="Студент: "  HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxStudent" Margin="30,50,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
-        <Label Content="Дата занятия: "  HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <DatePicker x:Name="dataPickerMain" Margin="30,60,30,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Дата: "  HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxDate" Margin="30,100,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
 
-        <Label Content="Группа: "  HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxGroup" Margin="30,260,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
+        <Label Content="Отметка: "  HorizontalAlignment="Left" Margin="30,130,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <TextBox x:Name="textBoxMark" Margin="30,150,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="2"/>
 
-        <Label Content="Учитель: "  HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxTeacher" Margin="30,110,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
-
-        <Label Content="Студент: "  HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxStudent" Margin="30,160,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
-
-        <Label Content="Тема: "  HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxTopic" Margin="30,210,30,0" VerticalAlignment="Top" FontSize="14" IsReadOnly="True"/>
-
-        <Label Content="Отметка: "  HorizontalAlignment="Left" Margin="30,290,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxMark" Margin="30,310,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="2"/>
-
-        <Button x:Name="buttonInsert" Content="Добавить" VerticalAlignment="Bottom" Margin="30, 0, 30, 30" FontSize="18" Click="buttonInsert_Click"/>
+        <Button x:Name="buttonInsert" Content="Добавить" VerticalAlignment="Bottom" Margin="30, 0, 30, 30" FontSize="18" Click="buttonInsert_Click" IsDefault="True"/>
     </Grid>
 </Window>

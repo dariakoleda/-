@@ -5,13 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CourseProject
 {
@@ -40,12 +33,14 @@ namespace CourseProject
                         break;
                     }
             }
-            Connector connector = new Connector();
-            var table = connector.GetTableByType(typeof(Topics));
-            ReportDataSource reportDataSource = new ReportDataSource(dataSourceName, table);
-            reportViewerMain.LocalReport.DataSources.Add(reportDataSource);
-            reportViewerMain.LocalReport.ReportEmbeddedResource = $"CourseProject.{reportName}.rdlc";
-            reportViewerMain.RefreshReport();
+            using (Connector connector = new Connector())
+            {
+                var table = connector.GetTableByName(tableName);
+                ReportDataSource reportDataSource = new ReportDataSource(dataSourceName, table);
+                reportViewerMain.LocalReport.DataSources.Add(reportDataSource);
+                reportViewerMain.LocalReport.ReportEmbeddedResource = $"CourseProject.{reportName}.rdlc";
+                reportViewerMain.RefreshReport();
+            }
         }
 
         private void buttonShowReport_Click(object sender, RoutedEventArgs e)

@@ -9,11 +9,11 @@ namespace CourseProject.Inserts
     /// </summary>
     public partial class InsertTopic : Window
     {
-        private const string tableName = "Topics";
 
         public InsertTopic()
         {
             InitializeComponent();
+            dataPickerMain.SelectedDate = DateTime.Now;
             UpdateDataGrid();
             FillComboBox();
         }
@@ -37,7 +37,7 @@ namespace CourseProject.Inserts
                     var mbResult = MessageBox.Show($"Вы точно хотите добавить данный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (mbResult == MessageBoxResult.Yes)
                     {
-                        connector.InsertTopic(topic);
+                        connector.InsertTopic(topic, dataPickerMain.SelectedDate);
                     }
                 }
                 UpdateDataGrid();
@@ -86,7 +86,7 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    dataGridMain.ItemsSource = connector.GetTableByType(typeof(TopicsView));
+                    dataGridMain.ItemsSource = connector.dataClasses.TopicsView;
                 }
             }
             catch (Exception ex)

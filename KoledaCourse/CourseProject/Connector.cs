@@ -28,34 +28,10 @@ namespace CourseProject
             }
         }
 
-        public ITable GetView(string tableName)
-        {
-            tableName += "View";
-            var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
-            return table;
-        }
-
         public ITable GetTableByName(string tableName)
         {
             var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
             return table;
-        }
-
-        public ITable GetTableByType(Type tableType)
-        {
-            var table = dataClasses.GetTable(tableType);
-            return table;
-        }
-
-        public List<string> GetListOfTables()
-        {
-            var tableList = dataClasses.Mapping.GetTables();
-            var tableNames = new List<string>();
-            foreach (var table in tableList)
-            {
-                tableNames.Add(table.TableName.Replace("dbo.", ""));
-            }
-            return tableNames;
         }
 
         public List<string> GetColumnsList(Type tableType)
@@ -72,11 +48,12 @@ namespace CourseProject
             return columnNames;
         }
 
-        public void InsertGroup(string groupName)
+        public void InsertGroup(string groupName, int id_t)
         {
             Groups group = new Groups
             {
-                group_name = groupName
+                group_name = groupName,
+                id_teacher = id_t
             };
             dataClasses.Groups.InsertOnSubmit(group);
             SubmitChanges();
@@ -94,23 +71,25 @@ namespace CourseProject
             SubmitChanges();
         }
 
-        public void InsertStudent(string surname, string name, string patronymic)
+        public void InsertStudent(string surname, string name, string patronymic, int id_g)
         {
             Students student = new Students
             {
                 surname = surname,
                 name = name,
-                patronymic = patronymic
+                patronymic = patronymic,
+                id_group = id_g
             };
             dataClasses.Students.InsertOnSubmit(student);
             SubmitChanges();
         }
 
-        public void InsertTopic(string topic)
+        public void InsertTopic(string topic, DateTime? date)
         {
             Topics topics = new Topics
             {
-                topic_name = topic
+                topic_name = topic,
+                topic_date = (DateTime)date
             };
             dataClasses.Topics.InsertOnSubmit(topics);
             SubmitChanges();
@@ -142,7 +121,9 @@ namespace CourseProject
 
         public IQueryable<TopicsView> SearchTopic(string topicName)
         {
-            var table = from r in dataClasses.TopicsView where r.topic_name.ToLower().Contains(topicName.ToLower()) select r;
+            var table = from r in dataClasses.TopicsView
+                        where r.topic_name.ToLower().Contains(topicName.ToLower()) || r.topic_date.ToString().Contains(topicName.ToLower())
+                        select r;
             return table;
         }
 
@@ -177,6 +158,7 @@ namespace CourseProject
         public void Dispose()
         {
             dataClasses.Dispose();
+            registrationDataContext.Dispose();
         }
 
         public static string SHA256ToString(string s)

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Linq;
 using System.Globalization;
+using CourseProject.Inserts;
 
 namespace CourseProject
 {
@@ -193,7 +194,7 @@ namespace CourseProject
                 {
                     using (Connector connector = new Connector())
                     {
-                        if (row[day.ToString()].ToString() == "")
+                        if (string.IsNullOrEmpty(row[day.ToString()].ToString()))
                         {
                             continue;
                         }
@@ -221,7 +222,7 @@ namespace CourseProject
                             var noteInsert = (from n in connector.dataClasses.Notes
                                               where n.id_student == id_student
                                               select n).FirstOrDefault();
-                            if (topic.Count() == 0)
+                            if (!topic.Any())
                             {
                                 MessageBox.Show($"В базе нет темы за {date.ToString("dd-MMM-yy")}!");
                                 return;
@@ -246,12 +247,16 @@ namespace CourseProject
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
-
+            InsertNote insertNote = new InsertNote();
+            var result = insertNote.ShowDialog();
+            if (result == true)
+            {
+                FillDataGrids();
+            }
         }
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            FillComboBoxes();
             FillDataGrids();
         }
 

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
-using System.Data;
 
 namespace CourseProject.Inserts
 {
@@ -14,7 +13,6 @@ namespace CourseProject.Inserts
         public InsertNote()
         {
             InitializeComponent();
-            this.dataPickerMain.SelectedDate = DateTime.Now;
             FillComboBoxes();
         }
 
@@ -31,20 +29,20 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    DateTime dateTime = dataPickerMain.SelectedDate ?? throw new Exception("Выберите дату!");
                     connector.InsertNote(
                         Convert.ToInt32(comboBoxStudent.SelectedValue),
-                        Convert.ToInt32(comboBoxTopic.SelectedValue),
+                        Convert.ToInt32(comboBoxDate.SelectedValue),
                         Convert.ToInt32(textBoxMark.Text)
                         );
                 }
                 MessageBox.Show("Запись успешно добавлена!");
+                DialogResult = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
+                DialogResult = false;
             }
-
         }
 
 
@@ -58,26 +56,13 @@ namespace CourseProject.Inserts
         {
             using (Connector connector = new Connector())
             {
-                var dt_teachers = connector.GetTableByName("Teachers");
-                var dt_students = connector.GetTableByName("Students");
-                var dt_groups = connector.GetTableByName("Groups");
-                var dt_topics = connector.GetTableByName("Topics");
+                comboBoxDate.ItemsSource = connector.dataClasses.Topics;
+                comboBoxDate.DisplayMemberPath = "topic_date";
+                comboBoxDate.SelectedValuePath = "id_topic";
 
-                comboBoxTeacher.ItemsSource = dt_teachers;
-                comboBoxTeacher.DisplayMemberPath = "surname";
-                comboBoxTeacher.SelectedValuePath = "id_teacher";
-
-                comboBoxStudent.ItemsSource = dt_students;
+                comboBoxStudent.ItemsSource = connector.dataClasses.Students;
                 comboBoxStudent.DisplayMemberPath = "surname";
                 comboBoxStudent.SelectedValuePath = "id_student";
-
-                comboBoxGroup.ItemsSource = dt_groups;
-                comboBoxGroup.DisplayMemberPath = "group_name";
-                comboBoxGroup.SelectedValuePath = "id_group";
-
-                comboBoxTopic.ItemsSource = dt_topics;
-                comboBoxTopic.DisplayMemberPath = "topic_name";
-                comboBoxTopic.SelectedValuePath = "id_topic";
             }
         }
     }

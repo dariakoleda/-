@@ -11,9 +11,12 @@
     <Grid>
         <Image x:Name="buttonBack" Source="/back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
 
-        <Label Content="Название группы: "  HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <Label Content="Название группы:"  HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <TextBox x:Name="textBoxName" Margin="30,60,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="5"/>
-
+        
+        <Label Content="Учитель:"  HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxTeachers" Margin="30,110,30,0" VerticalAlignment="Top" FontSize="14"/>
+        
         <Button x:Name="buttonInsert" Content="Добавить" VerticalAlignment="Bottom" Margin="30, 0, 30, 30" FontSize="18" Click="buttonInsert_Click"/>
     </Grid>
 </Window>
