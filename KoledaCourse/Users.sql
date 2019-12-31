@@ -11,7 +11,3 @@ CREATE TABLE Users
 	role varchar(5) DEFAULT 'гость',
 	CONSTRAINT CH_role CHECK ([role] IN('гость', 'админ')),
 )
-
-INSERT INTO Users VALUES ('1', '1', 'email@email.com', 'админ')
-
-SELECT * FROM Users

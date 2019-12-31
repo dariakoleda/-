@@ -102,10 +102,18 @@ namespace CourseProject
             CreateTopicsDataGrid();
             using (Connector connector = new Connector())
             {
+                int id_group = (int)comboBoxGroup.SelectedValue;
+                var teacher = (from g in connector.dataClasses.Groups
+                               join t in connector.dataClasses.Teachers
+                               on g.id_teacher equals t.id_teacher
+                               where g.id_group == id_group
+                               select t).Single();
+                labelTeacher.Content = teacher.surname + " " + teacher.name + " " + teacher.patronymic;
+
                 int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
                 int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
-                var students = from s in connector.dataClasses.StudentsNotes
-                               where s.id_group == (int)comboBoxGroup.SelectedValue
+                var students = from s in connector.dataClasses.Students
+                               where s.id_group == id_group
                                select s;
                 foreach (var student in students)
                 {
@@ -114,6 +122,7 @@ namespace CourseProject
                     row["Студент"] = student.surname;
                     mainDataTable.Rows.Add(row);
                 }
+
                 foreach (DataRow row in mainDataTable.Rows)
                 {
                     int id_student = Convert.ToInt32(row["Код"].ToString());
@@ -121,9 +130,9 @@ namespace CourseProject
                     {
                         DateTime date = new DateTime(year: year, month: month, day: day);
                         var curentStudent = (from n in connector.dataClasses.Notes
-                                             join s in connector.dataClasses.Students
-                                             on n.id_student equals s.id_student
-                                             where n.lesson_date == date && n.id_student == id_student
+                                             join t in connector.dataClasses.Topics
+                                             on n.id_topic equals t.id_topic
+                                             where t.topic_date == date && n.id_student == id_student
                                              select n).FirstOrDefault();
                         if (curentStudent == null)
                             continue;
@@ -133,6 +142,7 @@ namespace CourseProject
                             row[day.ToString()] = mark;
                     }
                 }
+
                 string groupName = comboBoxGroup.Text;
                 var topicsDates = from t in connector.dataClasses.Topics
                                   where t.topic_date.Year == year && t.topic_date.Month == month
@@ -190,7 +200,9 @@ namespace CourseProject
                         DateTime date = new DateTime(year: year, month: month, day: day);
                         int mark = Convert.ToInt32(row[day.ToString()].ToString());
                         var note = (from n in connector.dataClasses.Notes
-                                    where n.id_student == id_student && n.lesson_date == date
+                                    join t in connector.dataClasses.Topics
+                                    on n.id_topic equals t.id_topic
+                                    where n.id_student == id_student && t.topic_date == date
                                     select n);
                         if (note.Count() == 0)
                         {
@@ -217,14 +229,10 @@ namespace CourseProject
                             int id_g = (int)comboBoxGroup.SelectedValue;
                             int id_s = id_student;
                             int id_topic = topic.Single().id_topic;
-                            int id_t = noteInsert.id_teacher;
                             connector.dataClasses.Notes.InsertOnSubmit(new Notes
                             {
-                                id_group = id_g,
                                 id_student = id_s,
-                                id_teacher = id_t,
                                 id_topic = id_topic,
-                                lesson_date = date,
                                 mark = mark
                             });
                             connector.dataClasses.SubmitChanges();
@@ -232,6 +240,8 @@ namespace CourseProject
                     }
                 }
             }
+
+            FillDataGrids();
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
@@ -241,7 +251,8 @@ namespace CourseProject
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            FillComboBoxes();
+            FillDataGrids();
         }
 
         private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)

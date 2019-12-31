@@ -28,24 +28,25 @@
             </MenuItem>
             <MenuItem x:Name="menuUser" Header="👤" Click="menuUser_Click" HorizontalAlignment="Right" FontSize="16"/>
         </Menu>
-        <DataGrid x:Name="dataGridMain" Margin="200,60,460,100" VerticalAlignment="Stretch" AutoGenerateColumns="True" MinWidth="300" MinHeight="600"/>
-        <DataGrid x:Name="dataGridTopics" Margin="150,60,30,100" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400" MinHeight="600"/>
+        <DataGrid x:Name="dataGridMain" Margin="200,100,460,100" VerticalAlignment="Stretch" AutoGenerateColumns="True" MinWidth="300" MinHeight="600"/>
+        <DataGrid x:Name="dataGridTopics" Margin="150,100,30,100" VerticalAlignment="Stretch" HorizontalAlignment="Right" AutoGenerateColumns="True" MinWidth="400" MinHeight="600"/>
 
-        <Label Content="Год:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxYear" Margin="30, 60, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Год:" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxYear" Margin="30, 100, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
         
-        <Label Content="Месяц:" HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxMonth" Margin="30, 110, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Месяц:" HorizontalAlignment="Left" Margin="30,130,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxMonth" Margin="30, 150, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
 
-        <Label Content="Группа:" HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <ComboBox x:Name="comboBoxGroup" Margin="30, 160, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Группа:" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <ComboBox x:Name="comboBoxGroup" Margin="30, 200, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
 
-        <Button x:Name="buttonShow" Margin="30, 190, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Content="Показать" Click="buttonShow_Click"/>
+        <Button x:Name="buttonShow" Margin="30, 230, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Content="Показать" Click="buttonShow_Click"/>
 
         <UniformGrid Margin="200,700,30, 30" VerticalAlignment="Bottom" Columns="3" Rows="1" Height="30">
             <Button x:Name="buttonSubmit" Content="Подтвердить" FontSize="16" Click="buttonSubmit_Click"/>
             <Button x:Name="buttonInsert" Content="Добавить" FontSize="16" Click="buttonInsert_Click"/>
             <Button x:Name="buttonUpdate" Content="Обновить" FontSize="16" Click="buttonUpdate_Click"/>
         </UniformGrid>
+        <Label x:Name="labelTeacher" Content="Учитель" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 30, 30, 0"/>
     </Grid>
 </Window>

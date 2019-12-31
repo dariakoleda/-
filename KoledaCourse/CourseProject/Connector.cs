@@ -116,15 +116,12 @@ namespace CourseProject
             SubmitChanges();
         }
 
-        public void InsertNote(int id_t, int id_s, int id_g, int id_topic, DateTime dateTime, int mark)
+        public void InsertNote(int id_s, int id_topic, int mark)
         {
             Notes note = new Notes
             {
-                id_teacher = id_t,
                 id_student = id_s,
-                id_group = id_g,
                 id_topic = id_topic,
-                lesson_date = dateTime,
                 mark = mark
             };
             dataClasses.Notes.InsertOnSubmit(note);

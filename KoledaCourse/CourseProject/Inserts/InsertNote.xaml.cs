@@ -33,11 +33,8 @@ namespace CourseProject.Inserts
                 {
                     DateTime dateTime = dataPickerMain.SelectedDate ?? throw new Exception("Выберите дату!");
                     connector.InsertNote(
-                        Convert.ToInt32(comboBoxTeacher.SelectedValue),
                         Convert.ToInt32(comboBoxStudent.SelectedValue),
-                        Convert.ToInt32(comboBoxGroup.SelectedValue),
                         Convert.ToInt32(comboBoxTopic.SelectedValue),
-                        dateTime,
                         Convert.ToInt32(textBoxMark.Text)
                         );
                 }
