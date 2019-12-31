@@ -52,7 +52,7 @@ CREATE TRIGGER AvgMark_Tr On Notes AFTER INSERT, UPDATE AS
 	declare @id int
 	declare @avgMark float
 	set @id = (SELECT inserted.id_student FROM inserted)
-	set @avgMark = (SELECT AVG(Cast(Notes.mark AS float)) FROM Notes WHERE Notes.id_student = @id)
+	set @avgMark = (SELECT ROUND(AVG(Cast(Notes.mark AS float)),2) FROM Notes WHERE Notes.id_student = @id)
 	UPDATE Students SET average_mark = @avgMark WHERE id_student = @id
 
 INSERT INTO Topics VALUES
@@ -119,3 +119,5 @@ CREATE VIEW TopicsGroupsView AS
 	JOIN Students ON Students.id_group = Groups.id_group
 	JOIN Notes ON Notes.id_student = Students.id_student
 	JOIN Topics ON Notes.id_topic = Topics.id_topic
+
+SELECT * FROM Students

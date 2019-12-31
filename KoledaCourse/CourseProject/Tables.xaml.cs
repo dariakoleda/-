@@ -121,6 +121,7 @@ namespace CourseProject
                     DataRow row = mainDataTable.NewRow();
                     row["Код"] = student.id_student;
                     row["Студент"] = student.surname;
+                    row["Средняя отметка"] = student.average_mark;
                     mainDataTable.Rows.Add(row);
                 }
 
