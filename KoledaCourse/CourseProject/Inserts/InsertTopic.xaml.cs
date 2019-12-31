@@ -17,13 +17,6 @@ namespace CourseProject.Inserts
             UpdateDataGrid();
         }
 
-        private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-        }
-
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -71,7 +64,6 @@ namespace CourseProject.Inserts
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void buttonReset_Click(object sender, RoutedEventArgs e)

@@ -16,13 +16,6 @@ namespace CourseProject.Inserts
             FillComboBoxes();
         }
 
-        private void buttonBack_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-        }
-
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
             try

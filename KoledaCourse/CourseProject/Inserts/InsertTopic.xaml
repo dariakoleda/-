@@ -10,8 +10,6 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <Image x:Name="buttonBack" Source="/back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
-
         <Label Content="Название темы: "  HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <TextBox x:Name="textBoxName" Margin="30,100,30,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" MaxLength="70"  Width="150"/>
 

@@ -9,8 +9,6 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <Image x:Name="buttonBack" Source="/back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30" MouseDown="buttonBack_MouseDown"/>
-
         <Label Content="Фамилия: "  HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <TextBox x:Name="textBoxSurame" Margin="30,60,30,0" VerticalAlignment="Top" FontSize="14" MaxLength="20" PreviewTextInput="RusValidationTextBox"/>
 
