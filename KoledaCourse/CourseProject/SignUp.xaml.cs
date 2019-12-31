@@ -48,7 +48,11 @@ namespace CourseProject
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такой логин уже существует!");
+                if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Такой логин уже существует!");
+                }
+                
             }
             catch (Exception ex)
             {
