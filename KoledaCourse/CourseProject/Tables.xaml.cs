@@ -205,7 +205,7 @@ namespace CourseProject
                                     on n.id_topic equals t.id_topic
                                     where n.id_student == id_student && t.topic_date == date
                                     select n);
-                        if (note.Count() == 0)
+                        if (!note.Any())
                         {
 
                         }
@@ -267,7 +267,7 @@ namespace CourseProject
 
         private void menuManual_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void menuUser_Click(object sender, RoutedEventArgs e)
