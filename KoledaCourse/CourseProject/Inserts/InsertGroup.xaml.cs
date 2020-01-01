@@ -38,12 +38,20 @@ namespace CourseProject.Inserts
 
         private void FillComboBox()
         {
-            using (Connector connector = new Connector())
+            try
             {
-                comboBoxTeachers.ItemsSource = connector.dataClasses.Teachers;
-                comboBoxTeachers.DisplayMemberPath = "surname";
-                comboBoxTeachers.SelectedValuePath = "id_teacher";
+                using (Connector connector = new Connector())
+                {
+                    comboBoxTeachers.ItemsSource = connector.dataClasses.Teachers;
+                    comboBoxTeachers.DisplayMemberPath = "surname";
+                    comboBoxTeachers.SelectedValuePath = "id_teacher";
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

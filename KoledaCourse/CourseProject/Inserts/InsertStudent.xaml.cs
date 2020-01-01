@@ -38,14 +38,20 @@ namespace CourseProject.Inserts
 
         private void FillComboBox()
         {
-            using (Connector connector = new Connector())
+            try
             {
-                comboBoxGroups.ItemsSource = connector.dataClasses.Groups;
-                comboBoxGroups.DisplayMemberPath = "group_name";
-                comboBoxGroups.SelectedValuePath = "id_group";
+                using (Connector connector = new Connector())
+                {
+                    comboBoxGroups.ItemsSource = connector.dataClasses.Groups;
+                    comboBoxGroups.DisplayMemberPath = "group_name";
+                    comboBoxGroups.SelectedValuePath = "id_group";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
-
 
         private void RusValidationTextBox(object sender, TextCompositionEventArgs e)
         {

@@ -50,15 +50,22 @@ namespace CourseProject.Inserts
 
         public void FillComboBoxes()
         {
-            using (Connector connector = new Connector())
+            try
             {
-                comboBoxDate.ItemsSource = connector.dataClasses.Topics;
-                comboBoxDate.DisplayMemberPath = "topic_date";
-                comboBoxDate.SelectedValuePath = "id_topic";
+                using (Connector connector = new Connector())
+                {
+                    comboBoxDate.ItemsSource = connector.dataClasses.Topics;
+                    comboBoxDate.DisplayMemberPath = "topic_date";
+                    comboBoxDate.SelectedValuePath = "id_topic";
 
-                comboBoxStudent.ItemsSource = connector.dataClasses.Students;
-                comboBoxStudent.DisplayMemberPath = "surname";
-                comboBoxStudent.SelectedValuePath = "id_student";
+                    comboBoxStudent.ItemsSource = connector.dataClasses.Students;
+                    comboBoxStudent.DisplayMemberPath = "surname";
+                    comboBoxStudent.SelectedValuePath = "id_student";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
