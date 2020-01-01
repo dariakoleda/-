@@ -22,7 +22,11 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    connector.InsertGroup(textBoxName.Text, (int)comboBoxTeachers.SelectedValue);
+                    var mbResult = MessageBox.Show($"Вы точно хотите добавить данный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (mbResult == MessageBoxResult.Yes)
+                    {
+                        connector.InsertGroup(textBoxName.Text, (int)comboBoxTeachers.SelectedValue);
+                    }
                 }
                 MessageBox.Show("Запись успешно добавлена!");
             }

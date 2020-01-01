@@ -36,6 +36,7 @@ namespace CourseProject
                     }
                     user.role = comboBoxRoles.Text.ToLower();
                     connector.registrationDataContext.SubmitChanges();
+                    MessageBox.Show("Роль пользователя успешно изменена!");
                 }
             }
             catch (Exception ex)

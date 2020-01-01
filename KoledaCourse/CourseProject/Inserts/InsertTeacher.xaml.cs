@@ -21,7 +21,11 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    connector.InsertTeacher(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                    var mbResult = MessageBox.Show($"Вы точно хотите добавить данный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (mbResult == MessageBoxResult.Yes)
+                    {
+                        connector.InsertTeacher(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                    }
                 }
                 MessageBox.Show("Запись успешно добавлена!");
             }

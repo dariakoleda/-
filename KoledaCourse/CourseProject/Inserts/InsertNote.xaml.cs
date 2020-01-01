@@ -22,11 +22,15 @@ namespace CourseProject.Inserts
             {
                 using (Connector connector = new Connector())
                 {
-                    connector.InsertNote(
+                    var mbResult = MessageBox.Show($"Вы точно хотите добавить данный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (mbResult == MessageBoxResult.Yes)
+                    {
+                        connector.InsertNote(
                         Convert.ToInt32(comboBoxStudent.SelectedValue),
                         Convert.ToInt32(comboBoxDate.SelectedValue),
                         Convert.ToInt32(textBoxMark.Text)
                         );
+                    }
                 }
                 MessageBox.Show("Запись успешно добавлена!");
                 DialogResult = true;

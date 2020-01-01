@@ -240,6 +240,7 @@ namespace CourseProject
                 }
             }
             FillDataGrids();
+            MessageBox.Show("Данные успешно изменены!");
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
