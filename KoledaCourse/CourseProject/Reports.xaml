@@ -11,7 +11,8 @@
         <Label Content="Отчёты:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 20, 0, 0" FontSize="16"/>
         <Button x:Name="buttonShowReport" Content="Показать" Margin="200, 50, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="150" FontSize="14" Click="buttonShowReport_Click"/>
         <ComboBox x:Name="comboBoxReports" Margin="20, 50, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="150" FontSize="14">
-            <ComboBoxItem Content="Темы"></ComboBoxItem>
+            <ComboBoxItem Content="Темы"/>
+            <ComboBoxItem Content="Средние отметки"/>
         </ComboBox>
         <WindowsFormsHost Margin="20, 80, 20, 20">
             <rv:ReportViewer x:Name="reportViewerMain"></rv:ReportViewer>

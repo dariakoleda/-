@@ -85,6 +85,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DSStudents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSStudents.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DSTopics.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,6 +209,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAverageMarks.rdlc" />
     <EmbeddedResource Include="ReportTopics.rdlc" />
     <None Include=".editorconfig" />
     <None Include="DataClasses.dbml">
@@ -213,6 +219,17 @@
     </None>
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="DSStudents.xsc">
+      <DependentUpon>DSStudents.xsd</DependentUpon>
+    </None>
+    <None Include="DSStudents.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSStudents.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSStudents.xss">
+      <DependentUpon>DSStudents.xsd</DependentUpon>
     </None>
     <None Include="DSTopics.xsc">
       <DependentUpon>DSTopics.xsd</DependentUpon>

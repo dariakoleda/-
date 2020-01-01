@@ -36,6 +36,13 @@ namespace CourseProject
                             tableName = "Topics";
                             break;
                         }
+                    case 1:
+                        {
+                            reportName = "ReportAverageMarks";
+                            dataSourceName = "DSStudents";
+                            tableName = "Students";
+                            break;
+                        }
                 }
                 Connector connector = new Connector();
                 var table = connector.GetTableByName(tableName);
