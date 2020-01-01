@@ -48,12 +48,6 @@
       <Association Name="Teachers_Groups" Member="Teachers" ThisKey="id_teacher" OtherKey="id_teacher" Type="Teachers" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TopicsView" Member="TopicsView">
-    <Type Name="TopicsView">
-      <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
-      <Column Name="topic_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TeachersView" Member="TeachersView">
     <Type Name="TeachersView">
       <Column Name="surname" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
@@ -79,6 +73,12 @@
   <Table Name="dbo.GroupsView" Member="GroupsView">
     <Type Name="GroupsView">
       <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TopicsView" Member="TopicsView">
+    <Type Name="TopicsView">
+      <Column Name="topic_name" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="topic_date" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Input;
 
 namespace CourseProject.Inserts
 {
@@ -9,12 +8,10 @@ namespace CourseProject.Inserts
     /// </summary>
     public partial class InsertTopic : Window
     {
-
         public InsertTopic()
         {
             InitializeComponent();
             dataPickerMain.SelectedDate = DateTime.Now;
-            UpdateDataGrid();
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
@@ -32,68 +29,7 @@ namespace CourseProject.Inserts
                         connector.InsertTopic(topic, dataPickerMain.SelectedDate);
                     }
                 }
-                UpdateDataGrid();
                 MessageBox.Show("Запись успешно добавлена!");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void buttonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var item = dataGridMain.SelectedItem ?? throw new Exception("Выберите запись для удаления!");
-                var topicRow = dataGridMain.SelectedItem as TopicsView;
-                var mbResult = MessageBox.Show($"Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (mbResult == MessageBoxResult.Yes)
-                {
-                    using (Connector connector = new Connector())
-                    {
-                        connector.DeleteTopic(topicRow);
-                    }
-                }
-                UpdateDataGrid();
-                MessageBox.Show("Запись успешно удалена!");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void buttonReset_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateDataGrid();
-        }
-
-        private void UpdateDataGrid()
-        {
-            try
-            {
-                using (Connector connector = new Connector())
-                {
-                    dataGridMain.ItemsSource = connector.dataClasses.TopicsView;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void buttonSearch_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                using (Connector connector = new Connector())
-                {
-                    dataGridMain.ItemsSource = connector.SearchTopic(textBoxSearch.Text);
-                }
             }
             catch (Exception ex)
             {

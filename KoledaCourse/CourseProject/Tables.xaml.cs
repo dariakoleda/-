@@ -255,14 +255,12 @@ namespace CourseProject
             catch
             {
             }
-            
         }
 
         private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)
         {
             RoleChanger roleChanger = new RoleChanger();
             roleChanger.ShowDialog();
-            FillDataGrids();
         }
 
         private void menuManual_Click(object sender, RoutedEventArgs e)

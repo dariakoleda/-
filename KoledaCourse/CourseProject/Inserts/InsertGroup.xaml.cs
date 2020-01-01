@@ -41,6 +41,5 @@ namespace CourseProject.Inserts
                 comboBoxTeachers.SelectedValuePath = "id_teacher";
             }
         }
-
     }
 }

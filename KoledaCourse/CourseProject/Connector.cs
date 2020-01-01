@@ -16,15 +16,6 @@ namespace CourseProject
 
         public Connector() { }
 
-        public void CheckConnection(string connectionString)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                sqlConnection.Open();
-                sqlConnection.Close();
-            }
-        }
-
         public ITable GetTableByName(string tableName)
         {
             var table = (ITable)dataClasses.GetType().GetProperty(tableName).GetValue(dataClasses, null);
@@ -116,9 +107,9 @@ namespace CourseProject
             SubmitChanges();
         }
 
-        public IQueryable<TopicsView> SearchTopic(string topicName)
+        public IQueryable<Topics> SearchTopic(string topicName)
         {
-            var table = from r in dataClasses.TopicsView
+            var table = from r in dataClasses.Topics
                         where r.topic_name.ToLower().Contains(topicName.ToLower()) || r.topic_date.ToString().Contains(topicName.ToLower())
                         select r;
             return table;

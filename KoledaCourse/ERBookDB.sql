@@ -102,7 +102,7 @@ CREATE VIEW GroupsView AS
 
 GO
 CREATE VIEW TopicsView AS
-	SELECT DISTINCT Topics.topic_name, Topics.topic_date FROM Topics
+	SELECT DISTINCT Topics.topic_name, FORMAT(Topics.topic_date, 'dd-MM-yyyy') AS [topic_date] FROM Topics
 
 GO
 CREATE VIEW TeachersView AS
@@ -119,5 +119,3 @@ CREATE VIEW TopicsGroupsView AS
 	JOIN Students ON Students.id_group = Groups.id_group
 	JOIN Notes ON Notes.id_student = Students.id_student
 	JOIN Topics ON Notes.id_topic = Topics.id_topic
-
-SELECT * FROM Students

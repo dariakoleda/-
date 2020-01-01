@@ -5,24 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseProject.Inserts"
         mc:Ignorable="d"
-        Title="Тема" Height="550" Width="900"
-        MinWidth="800" MinHeight="500"
+        Title="Тема" Height="350" Width="300"
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <Label Content="Название темы: "  HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <TextBox x:Name="textBoxName" Margin="30,100,30,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" MaxLength="70"  Width="150"/>
-
-        <Label Content="Дата занятия: "  HorizontalAlignment="Left" Margin="30,130,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
-        <DatePicker x:Name="dataPickerMain" Margin="30,150,30,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="150"/>
-
-        <UniformGrid  Margin="200,420,30,30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="3" >
-            <Button x:Name="buttonInsert" Content="Добавить" VerticalAlignment="Bottom" FontSize="16" Click="buttonInsert_Click" Margin="0, 0, 30, 0" MinWidth="150"/>
-            <Button x:Name="buttonReset" Content="Сбросить" VerticalAlignment="Bottom" FontSize="16" Margin="0, 0, 30, 0" MinWidth="150" Click="buttonReset_Click"/>
-            <Button x:Name="buttonDelete" Content="Удалить" VerticalAlignment="Bottom" FontSize="16" Margin="0, 0, 30, 0" MinWidth="150" Click="buttonDelete_Click"/>
-        </UniformGrid>
-        <DataGrid x:Name="dataGridMain" Margin="200,100,60,30" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="True" Height="300" MinWidth="400" ColumnWidth="*" RowHeight="50"/>
-        <TextBox x:Name="textBoxSearch" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"  Margin="30,30,120,30" FontSize="14"/>
-        <Button x:Name="buttonSearch" Content="&#x1F50E;" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" FontSize="16" Margin="30,30,60,30" Click="buttonSearch_Click"/>
+        <Label Content="Название темы: "  HorizontalAlignment="Stretch" Margin="30" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <TextBox x:Name="textBoxName" Margin="30, 50, 30, 0" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14" MaxLength="70"/>
+        
+        <Label Content="Дата занятия: "  HorizontalAlignment="Stretch" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
+        <DatePicker x:Name="dataPickerMain" Margin="30,100,30,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Stretch"/>
+        
+        <Button x:Name="buttonInsert" Content="Добавить" VerticalAlignment="Bottom" FontSize="16" Click="buttonInsert_Click" Margin="30, 0, 30, 30"/>
     </Grid>
 </Window>

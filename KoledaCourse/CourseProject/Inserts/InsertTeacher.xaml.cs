@@ -16,13 +16,13 @@ namespace CourseProject.Inserts
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             try
             {
                 using (Connector connector = new Connector())
                 {
                     connector.InsertTeacher(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
-                } 
+                }
                 MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
