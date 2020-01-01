@@ -22,20 +22,6 @@ namespace CourseProject
             return table;
         }
 
-        public List<string> GetColumnsList(Type tableType)
-        {
-            var fields = dataClasses.Mapping.MappingSource
-                                  .GetModel(typeof(DataClassesDataContext))
-                                  .GetMetaType(tableType)
-                                  .DataMembers;
-            List<string> columnNames = new List<string>();
-            foreach (var field in fields)
-            {
-                columnNames.Add(field.MappedName);
-            }
-            return columnNames;
-        }
-
         public void InsertGroup(string groupName, int id_t)
         {
             Groups group = new Groups
@@ -98,21 +84,6 @@ namespace CourseProject
         private void SubmitChanges()
         {
             dataClasses.SubmitChanges();
-        }
-
-        public void DeleteTopic(TopicsView topicRow)
-        {
-            Topics topic = (from t in dataClasses.Topics where t.topic_name == topicRow.topic_name select t).Single();
-            dataClasses.Topics.DeleteOnSubmit(topic);
-            SubmitChanges();
-        }
-
-        public IQueryable<Topics> SearchTopic(string topicName)
-        {
-            var table = from r in dataClasses.Topics
-                        where r.topic_name.ToLower().Contains(topicName.ToLower()) || r.topic_date.ToString().Contains(topicName.ToLower())
-                        select r;
-            return table;
         }
 
         public void SignUp(string login, string password, string email)
