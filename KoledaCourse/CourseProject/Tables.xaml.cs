@@ -176,7 +176,11 @@ namespace CourseProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            if (CurrentUser.Role == "гость")
+            {
+                menuMain.Visibility = Visibility.Collapsed;
+                uniformGridButtons.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void buttonSubmit_Click(object sender, RoutedEventArgs e)

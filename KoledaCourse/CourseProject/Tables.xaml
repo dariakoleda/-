@@ -10,7 +10,7 @@
         Loaded="Window_Loaded"
         >
     <Grid>
-        <Menu Height="20" VerticalAlignment="Top">
+        <Menu x:Name="menuMain" Height="20" VerticalAlignment="Top">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch"/>
@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem x:Name="menuUser" Header="👤" Click="menuUser_Click" HorizontalAlignment="Right" FontSize="16"/>
         </Menu>
-        <DataGrid x:Name="dataGridMain" Margin="200,100,460,100" VerticalAlignment="Stretch" AutoGenerateColumns="True" MinWidth="300" MinHeight="600" CanUserDeleteRows="False" CanUserAddRows="False"/>
+        <DataGrid x:Name="dataGridMain" Margin="200,100,460,100" VerticalAlignment="Stretch" AutoGenerateColumns="True" MinWidth="300" CanUserDeleteRows="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto"/>
         <DataGrid x:Name="dataGridTopics" Margin="150,100,30,100" HorizontalAlignment="Right" AutoGenerateColumns="True" Width="400" IsReadOnly="True" ColumnWidth="*"/>
 
         <Label Content="Год:" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
@@ -41,7 +41,7 @@
 
         <Button x:Name="buttonShow" Margin="30, 230, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Content="Показать" Click="buttonShow_Click"/>
 
-        <UniformGrid Margin="200,700,30, 30" VerticalAlignment="Bottom" Columns="2" Rows="1" Height="30">
+        <UniformGrid x:Name="uniformGridButtons" Margin="200,700,30, 30" VerticalAlignment="Bottom" Columns="2" Rows="1" Height="30">
             <Button x:Name="buttonSubmit" Content="Подтвердить изменения" FontSize="16" Click="buttonSubmit_Click"/>
             <Button x:Name="buttonInsert" Content="Добавить данные" FontSize="16" Click="buttonInsert_Click"/>
         </UniformGrid>
