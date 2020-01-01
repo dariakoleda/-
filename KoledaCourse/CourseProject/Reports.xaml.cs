@@ -20,26 +20,33 @@ namespace CourseProject
 
         private void FillReportViewer()
         {
-            string reportName = "";
-            string dataSourceName = "";
-            string tableName = "";
-            switch (comboBoxReports.SelectedIndex)
+            try
             {
-                case 0:
-                    {
-                        reportName = "ReportTopics";
-                        dataSourceName = "DSTopics";
-                        tableName = "Topics";
-                        break;
-                    }
-            }
-            using (Connector connector = new Connector())
-            {
+                if (comboBoxReports.SelectedItem == null)
+                    throw new Exception("Выберите отчёт!");
+                string reportName = "";
+                string dataSourceName = "";
+                string tableName = "";
+                switch (comboBoxReports.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            reportName = "ReportTopics";
+                            dataSourceName = "DSTopics";
+                            tableName = "Topics";
+                            break;
+                        }
+                }
+                Connector connector = new Connector();
                 var table = connector.GetTableByName(tableName);
                 ReportDataSource reportDataSource = new ReportDataSource(dataSourceName, table);
                 reportViewerMain.LocalReport.DataSources.Add(reportDataSource);
                 reportViewerMain.LocalReport.ReportEmbeddedResource = $"CourseProject.{reportName}.rdlc";
                 reportViewerMain.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

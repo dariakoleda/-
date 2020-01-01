@@ -32,7 +32,7 @@
 
         <Label Content="Год:" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <ComboBox x:Name="comboBoxYear" Margin="30, 100, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
-        
+
         <Label Content="Месяц:" HorizontalAlignment="Left" Margin="30,130,0,0" VerticalAlignment="Top" FontSize="16" Padding="0"/>
         <ComboBox x:Name="comboBoxMonth" Margin="30, 150, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
 
@@ -45,7 +45,7 @@
             <Button x:Name="buttonSubmit" Content="Подтвердить изменения" FontSize="16" Click="buttonSubmit_Click"/>
             <Button x:Name="buttonInsert" Content="Добавить данные" FontSize="16" Click="buttonInsert_Click"/>
         </UniformGrid>
-        <Label x:Name="labelTeacher" Content="Учитель" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 30, 30, 0"/>
+        <Label x:Name="labelTeacher" Content="" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 30, 30, 0"/>
         <Button x:Name="buttonUpdate" Content="⟲" FontSize="22" Width="35" Background="Transparent" BorderThickness="0" Click="buttonUpdate_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 65, 30, 0"/>
     </Grid>
 </Window>

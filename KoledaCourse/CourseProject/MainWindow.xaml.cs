@@ -45,7 +45,7 @@ namespace CourseProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Неправильный логин или пароль!");
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

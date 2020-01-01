@@ -1,0 +1,16 @@
+﻿<Window x:Class="CourseProject.Inserts.InsertsMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject.Inserts"
+        mc:Ignorable="d"
+        Title="Добавить данные" Height="320" Width="300"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Button x:Name="buttonInsertGroup" Content="Добавить группу" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="30, 50, 30, 0" FontSize="18" Click="buttonInsertGroup_Click"/>
+        <Button x:Name="buttonInsertStudent" Content="Добавить студента" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="30, 100, 30, 0" FontSize="18" Click="buttonInsertStudent_Click"/>
+        <Button x:Name="buttonInsertTopic"  Content="Добавить тему" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="30, 150, 30, 0" FontSize="18" Click="buttonInsertTopic_Click"/>
+        <Button x:Name="buttonInsertTeacher" Content="Добавить учителя" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="30, 200, 30, 0" FontSize="18" Click="buttonInsertTeacher_Click"/>
+    </Grid>
+</Window>

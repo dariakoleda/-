@@ -96,6 +96,9 @@
     <Compile Include="Inserts\InsertNote.xaml.cs">
       <DependentUpon>InsertNote.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inserts\InsertsMain.xaml.cs">
+      <DependentUpon>InsertsMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inserts\InsertStudent.xaml.cs">
       <DependentUpon>InsertStudent.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inserts\InsertNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inserts\InsertsMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,9 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="back.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

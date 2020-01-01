@@ -34,7 +34,6 @@ namespace CourseProject.Inserts
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ". Проверьте ввод данных!");
-                DialogResult = false;
             }
         }
 

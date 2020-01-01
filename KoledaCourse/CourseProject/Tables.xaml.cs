@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Linq;
 using System.Globalization;
 using CourseProject.Inserts;
+using System.Windows.Controls;
 
 namespace CourseProject
 {
@@ -17,6 +18,7 @@ namespace CourseProject
 
         DataTable mainDataTable = new DataTable();
         DataTable topicsDataTable = new DataTable();
+        int id_group = 0;
 
         class ComboboxItem
         {
@@ -103,7 +105,7 @@ namespace CourseProject
             CreateTopicsDataGrid();
             using (Connector connector = new Connector())
             {
-                int id_group = (int)comboBoxGroup.SelectedValue;
+                id_group = (int)comboBoxGroup.SelectedValue;
                 var teacher = (from g in connector.dataClasses.Groups
                                join t in connector.dataClasses.Teachers
                                on g.id_teacher equals t.id_teacher
@@ -238,16 +240,28 @@ namespace CourseProject
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
-            InsertTopic insertTopic = new InsertTopic();
-            var result = insertTopic.ShowDialog();
-            if (result == true)
+            try
             {
-                FillDataGrids();
+                InsertsMain inserts = new InsertsMain();
+                inserts.Show();
+            }
+            catch
+            {
             }
         }
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                comboBoxMonth.ItemsSource = null;
+                comboBoxYear.ItemsSource = null;
+                FillComboBoxes();
+                comboBoxGroup.SelectedValue = id_group;
+            }
+            catch
+            {
+            }
             try
             {
                 FillDataGrids();
@@ -260,7 +274,7 @@ namespace CourseProject
         private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)
         {
             RoleChanger roleChanger = new RoleChanger();
-            roleChanger.ShowDialog();
+            roleChanger.Show();
         }
 
         private void menuManual_Click(object sender, RoutedEventArgs e)
