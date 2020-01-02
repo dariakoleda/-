@@ -131,7 +131,7 @@ namespace CourseProject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
 		public string login
 		{
 			get
@@ -151,7 +151,7 @@ namespace CourseProject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(64) NOT NULL", CanBeNull=false)]
 		public string password
 		{
 			get
@@ -191,7 +191,7 @@ namespace CourseProject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NVarChar(5)")]
 		public string role
 		{
 			get

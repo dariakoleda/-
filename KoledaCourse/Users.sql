@@ -8,8 +8,8 @@ CREATE TABLE Users
 	login varchar(15) UNIQUE NOT NULL,
 	password varchar(64) NOT NULL,
 	email varchar(30) NOT NULL,
-	role varchar(5) DEFAULT 'гость',
-	CONSTRAINT CH_role CHECK ([role] IN('гость', 'админ')),
+	role nvarchar(5) DEFAULT N'гость',
+	CONSTRAINT CH_role CHECK ([role] IN(N'гость', N'админ')),
 )
 
 SELECT * FROM Users

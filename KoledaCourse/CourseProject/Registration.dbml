@@ -3,10 +3,10 @@
   <Table Name="dbo.Users" Member="Users">
     <Type Name="Users">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="login" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="password" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
       <Column Name="email" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="role" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
