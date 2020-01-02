@@ -242,6 +242,9 @@
     <None Include="DSTopics.xss">
       <DependentUpon>DSTopics.xsd</DependentUpon>
     </None>
+    <Content Include="Manual.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

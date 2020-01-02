@@ -7,6 +7,7 @@ using System.Linq;
 using System.Globalization;
 using CourseProject.Inserts;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace CourseProject
 {
@@ -298,7 +299,15 @@ namespace CourseProject
 
         private void menuManual_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                Process.Start("Manual.chm");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
         }
 
         private void menuUser_Click(object sender, RoutedEventArgs e)

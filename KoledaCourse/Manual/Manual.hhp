@@ -1,0 +1,15 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Manual.chm
+Contents file=Content.hhc
+Default topic=About.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x419 Русский (Россия)
+
+
+[FILES]
+About.htm
+
+[INFOTYPES]
+

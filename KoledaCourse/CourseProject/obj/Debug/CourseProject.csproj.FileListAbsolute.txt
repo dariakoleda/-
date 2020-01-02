@@ -113,3 +113,5 @@ C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debu
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\RoleChanger.baml
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertsMain.g.cs
 C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\Inserts\InsertsMain.baml
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\bin\Debug\Manual.chm
+C:\Users\andro\Documents\GitHub\KoledaCourse\KoledaCourse\CourseProject\obj\Debug\CourseProject_Content.g.cs
