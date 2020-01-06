@@ -119,3 +119,24 @@ CREATE VIEW TopicsGroupsView AS
 	JOIN Students ON Students.id_group = Groups.id_group
 	JOIN Notes ON Notes.id_student = Students.id_student
 	JOIN Topics ON Notes.id_topic = Topics.id_topic
+
+GO
+CREATE VIEW GroupsAvgMarksView AS
+	SELECT Groups.group_name, Students.average_mark FROM Groups
+	JOIN Students ON Students.id_group = Groups.id_group
+
+GO
+CREATE VIEW StudentsCountInYearView AS
+	SELECT Groups.group_name, Students.surname, YEAR(Topics.topic_date) AS [Ãמה], Topics.topic_date FROM Groups
+	JOIN Students ON Students.id_group = Groups.id_group
+	JOIN Notes ON Notes.id_student = Students.id_student
+	JOIN Topics ON Topics.id_topic = Notes.id_topic
+
+GO
+CREATE VIEW LessonsCountInMonthView AS
+	SELECT Groups.group_name, Notes.id_rb, MONTH(Topics.topic_date) AS [Ìוסÿצ] FROM Notes
+	JOIN Students ON Students.id_student = Notes.id_student
+	JOIN Groups ON Groups.id_group = Students.id_group
+	JOIN Topics ON Topics.id_topic = Notes.id_topic
+
+SELECT * FROM LessonsCountInMonthView

@@ -13,3 +13,4 @@ CREATE TABLE Users
 )
 
 SELECT * FROM Users
+UPDATE Users SET role=N'админ' WHERE id=5

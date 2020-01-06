@@ -95,11 +95,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSTopics.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ERBookDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERBookDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inserts\InsertGroup.xaml.cs">
       <DependentUpon>InsertGroup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Inserts\InsertNote.xaml.cs">
-      <DependentUpon>InsertNote.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inserts\InsertsMain.xaml.cs">
       <DependentUpon>InsertsMain.xaml</DependentUpon>
@@ -134,10 +136,6 @@
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
     <Page Include="Inserts\InsertGroup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Inserts\InsertNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,6 +208,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAverageMarks.rdlc" />
+    <EmbeddedResource Include="ReportLessonsInMonth.rdlc" />
+    <EmbeddedResource Include="ReportStudentsCount.rdlc" />
     <EmbeddedResource Include="ReportTopics.rdlc" />
     <None Include=".editorconfig" />
     <None Include="DataClasses.dbml">
@@ -245,6 +245,17 @@
     <Content Include="Manual.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ERBookDataSet.xsc">
+      <DependentUpon>ERBookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ERBookDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ERBookDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERBookDataSet.xss">
+      <DependentUpon>ERBookDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

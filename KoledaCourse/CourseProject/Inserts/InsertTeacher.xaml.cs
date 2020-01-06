@@ -25,9 +25,9 @@ namespace CourseProject.Inserts
                     if (mbResult == MessageBoxResult.Yes)
                     {
                         connector.InsertTeacher(textBoxSurame.Text, textBoxName.Text, textBoxPatronymic.Text);
+                        MessageBox.Show("Запись успешно добавлена!");
                     }
                 }
-                MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {

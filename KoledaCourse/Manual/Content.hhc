@@ -21,20 +21,12 @@
 		<param name="Local" value="Registration.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="&Ecirc;&eth;&agrave;&ograve;&ecirc;&icirc;&aring; &eth;&oacute;&ecirc;&icirc;&acirc;&icirc;&auml;&ntilde;&ograve;&acirc;&icirc;">
-		<param name="Local" value="Help.htm">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="&Auml;&icirc;&aacute;&agrave;&acirc;&euml;&aring;&iacute;&egrave;&aring; &auml;&agrave;&iacute;&iacute;&ucirc;&otilde;">
 		<param name="Local" value="Data.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="&Icirc;&ograve;&divide;&cedil;&ograve;&ucirc;">
 		<param name="Local" value="Reports.htm">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="&Egrave;&ccedil;&igrave;&aring;&iacute;&aring;&iacute;&egrave;&aring; &eth;&icirc;&euml;&egrave;">
-		<param name="Local" value="Role.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="&Acirc;&ucirc;&otilde;&icirc;&auml;">

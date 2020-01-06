@@ -25,7 +25,7 @@ namespace CourseProject
                 if (comboBoxReports.SelectedItem == null)
                     throw new Exception("Выберите отчёт!");
                 string reportName = "";
-                string dataSourceName = "";
+                string dataSourceName = "ERBookDataSet";
                 string tableName = "";
                 switch (comboBoxReports.SelectedIndex)
                 {
@@ -41,6 +41,20 @@ namespace CourseProject
                             reportName = "ReportAverageMarks";
                             dataSourceName = "DSStudents";
                             tableName = "Students";
+                            break;
+                        }
+                    case 2:
+                        {
+                            reportName = "ReportStudentsCount";
+                            dataSourceName = "ERBookDataSet";
+                            tableName = "StudentsCountInYearView";
+                            break;
+                        }
+                    case 3:
+                        {
+                            reportName = "ReportLessonsInMonth";
+                            dataSourceName = "ERBookDataSet";
+                            tableName = "LessonsCountInMonthView";
                             break;
                         }
                 }

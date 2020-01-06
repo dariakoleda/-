@@ -35,10 +35,11 @@ namespace CourseProject
         public Tables()
         {
             InitializeComponent();
-            FillComboBoxes();
+            FillDatesComboBoxes();
+            FillGroupsComboBox();
         }
 
-        private void FillComboBoxes()
+        private void FillDatesComboBoxes()
         {
             List<string> months = new List<string>
             {
@@ -64,6 +65,10 @@ namespace CourseProject
                 };
                 comboBoxYear.Items.Add(item);
             }
+        }
+
+        private void FillGroupsComboBox()
+        {
             using (Connector connector = new Connector())
             {
                 comboBoxGroup.ItemsSource = connector.dataClasses.Groups;
@@ -152,7 +157,7 @@ namespace CourseProject
 
                     string groupName = comboBoxGroup.Text;
                     var topicsDates = from t in connector.dataClasses.Topics
-                                      where t.topic_date.Year == year && t.topic_date.Month == month
+                                      where t.topic_date.Year == year && t.topic_date.Month == month && t.topic_name.Contains(textBoxSearch.Text.ToLower())
                                       select t;
 
                     foreach (var topic in topicsDates)
@@ -171,6 +176,34 @@ namespace CourseProject
             }
         }
 
+        private void FillTopicsDataGrid(string search)
+        {
+            try
+            {
+                CreateTopicsDataGrid();
+                search = search.Trim().ToLower();
+                using (Connector connector = new Connector())
+                {
+                    int year = (comboBoxYear.SelectedItem as ComboboxItem).Value;
+                    int month = (comboBoxMonth.SelectedItem as ComboboxItem).Value;
+                    string groupName = comboBoxGroup.Text;
+                    var topicsDates = from t in connector.dataClasses.Topics
+                                      where t.topic_date.Year == year && t.topic_date.Month == month && t.topic_name.Contains(search)
+                                      select t;
+
+                    foreach (var topic in topicsDates)
+                    {
+                        DataRow row = topicsDataTable.NewRow();
+                        row["Дата занятия"] = topic.topic_date.ToString("dd-MMM-yy");
+                        row["Тема"] = topic.topic_name;
+                        row["Код"] = topic.id_topic;
+                        topicsDataTable.Rows.Add(row);
+                    }
+                }
+            }
+            catch { }
+        }
+
         private void buttonShow_Click(object sender, RoutedEventArgs e)
         {
             FillDataGrids();
@@ -186,8 +219,11 @@ namespace CourseProject
         {
             if (CurrentUser.Role != "админ")
             {
-                menuMain.Visibility = Visibility.Collapsed;
+                menuFile.Visibility = Visibility.Hidden;
+                menuSettings.Visibility = Visibility.Hidden;
+                menuAbout.Visibility = Visibility.Hidden;
                 uniformGridButtons.Visibility = Visibility.Collapsed;
+                dataGridMain.IsEnabled = false;
             }
         }
 
@@ -272,23 +308,17 @@ namespace CourseProject
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
+            if (id_group == 0)
+            {
+                return;
+            }
             try
             {
-                comboBoxMonth.ItemsSource = null;
-                comboBoxYear.ItemsSource = null;
-                FillComboBoxes();
+                FillGroupsComboBox();
                 comboBoxGroup.SelectedValue = id_group;
-            }
-            catch
-            {
-            }
-            try
-            {
                 FillDataGrids();
             }
-            catch
-            {
-            }
+            catch { }
         }
 
         private void menuSettingsRoles_Click(object sender, RoutedEventArgs e)
@@ -307,7 +337,7 @@ namespace CourseProject
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void menuUser_Click(object sender, RoutedEventArgs e)
@@ -320,6 +350,16 @@ namespace CourseProject
                 mainWindow.Show();
                 this.Close();
             }
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                FillTopicsDataGrid(textBoxSearch.Text);
+            }
+            catch { }
         }
     }
 }

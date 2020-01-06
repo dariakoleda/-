@@ -81,4 +81,25 @@
       <Column Name="topic_date" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.LessonsCountInMonthView" Member="LessonsCountInMonthView">
+    <Type Name="LessonsCountInMonthView">
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="id_rb" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Месяц" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupsAvgMarksView" Member="GroupsAvgMarksView">
+    <Type Name="GroupsAvgMarksView">
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="average_mark" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentsCountInYearView" Member="StudentsCountInYearView">
+    <Type Name="StudentsCountInYearView">
+      <Column Name="group_name" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Год" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="topic_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

@@ -13,6 +13,8 @@
         <ComboBox x:Name="comboBoxReports" Margin="20, 50, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="150" FontSize="14">
             <ComboBoxItem Content="Темы"/>
             <ComboBoxItem Content="Средние отметки"/>
+            <ComboBoxItem Content="Количество студентов"/>
+            <ComboBoxItem Content="Количество занятий"/>
         </ComboBox>
         <WindowsFormsHost Margin="20, 80, 20, 20">
             <rv:ReportViewer x:Name="reportViewerMain"></rv:ReportViewer>

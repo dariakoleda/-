@@ -27,9 +27,9 @@ namespace CourseProject.Inserts
                     if (mbResult == MessageBoxResult.Yes)
                     {
                         connector.InsertTopic(topic, dataPickerMain.SelectedDate);
+                        MessageBox.Show("Запись успешно добавлена!");
                     }
                 }
-                MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {

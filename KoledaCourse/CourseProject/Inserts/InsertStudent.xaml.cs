@@ -26,9 +26,9 @@ namespace CourseProject.Inserts
                     if (mbResult == MessageBoxResult.Yes)
                     {
                         connector.InsertStudent(this.textBoxSurame.Text, this.textBoxName.Text, this.textBoxPatronymic.Text, (int)comboBoxGroups.SelectedValue);
+                        MessageBox.Show("Запись успешно добавлена!");
                     }
                 }
-                MessageBox.Show("Запись успешно добавлена!");
             }
             catch (Exception ex)
             {
